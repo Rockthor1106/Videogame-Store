@@ -3,6 +3,7 @@ package model;
 public class VideoGame {
 	int code;
 	double price;
+	int amount; 
 	//idk what do you think about add another attribute, the rack that each game belongs to
 	
 	public VideoGame(int code, double price) {
@@ -16,6 +17,10 @@ public class VideoGame {
 
 	public double getPrice() {
 		return price;
+	}
+	
+	public int getAmout() {
+		return amount;
 	}
 	
 }
