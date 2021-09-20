@@ -31,7 +31,7 @@ public class Main extends Application{
 		
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
-		primaryStage.setTitle("Casa Dorada");
+		primaryStage.setTitle("Iniminidinimini Video Games");
 		primaryStage.show();
 	}
 	
