@@ -50,11 +50,12 @@ public class VideoGameStore {
 		int counter = 0;
 		while(line != null) {
 			String[] parts = line.split(",");
-			for(int i = 0; i < parts[0].charAt(2); i++) {
+			for(int i = 0; i < Character.getNumericValue(parts[0].charAt(2)); i++) {
 				line = bReader.readLine();
 				if(line != null)
 				System.out.println(line);
 			}
+			System.out.println("----------");
 			
 		}
 		bReader.close();
