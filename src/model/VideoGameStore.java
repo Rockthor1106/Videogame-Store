@@ -45,15 +45,17 @@ public class VideoGameStore {
 
 	public void importVideoGamesCatalog(String filename) throws IOException {
 		BufferedReader bReader = new BufferedReader(new FileReader(filename));
-		String line = bReader.readLine();
+		bReader.readLine(); //this line reads just the first cell in the CSV document
+		String line = bReader.readLine(); //this line reads the first rack
+		int counter = 0;
 		while(line != null) {
-				String[] parts = line.split(",");
+			String[] parts = line.split(",");
+			for(int i = 0; i < parts[0].charAt(2); i++) {
 				line = bReader.readLine();
-//					for (int i = 0; i < parts.length; i++) {
-//						if (parts[].equals(" ")) {
-//							catalog.add(line)
-//						}
-//					}
+				if(line != null)
+				System.out.println(line);
+			}
+			
 		}
 		bReader.close();
 	}
