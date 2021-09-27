@@ -34,8 +34,8 @@ public class Rack extends HashTable<VideoGame, Integer, Integer>{
 	public VideoGame getItem(int key) {
 		boolean found = false;
 		VideoGame game = null;
-		for(int i = 0; i<table.size()-1 && !found; i++) {
-			if((Integer)this.table.get(i).getKey() == key) {
+		for(int i = 0; i<size && !found; i++) {
+			if(table.get(i).getKey() == key) {
 				found = true;
 				game = this.table.get(i);
 			}

@@ -3,6 +3,8 @@ package ui;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -71,7 +73,7 @@ public class MainController {
 			for(int j = 1; j<= games.length; j++) {
 				games[j-1] = Integer.parseInt(strs[j]);
 			}
-			clients[i] = new Client(Integer.parseInt(strs[0]), games, i+1+(games.length*2));
+			clients[i] = new Client(Integer.parseInt(strs[0]), games, i+1+(games.length));
 		}
     	//bubblesort
     	for(int i = clients.length; i>0; i--) {
@@ -83,11 +85,25 @@ public class MainController {
 				}
 			}
 		}
+    	Queue<Client> st = new LinkedList<>();
     	for(int i = 0; i<clients.length; i++) {
-    		System.out.println(Arrays.toString(clients[i].getWishListCode())+" "+clients[i].getTime());
+    		clients[i].setGamesToBuy(videoGameStore.orderList(clients[i].getWishListCode(), true));
+    		st.add(clients[i]);
     	}
-    	for(int i = 0; i<clients.length; i++) {
-    		System.out.println(Arrays.toString(videoGameStore.orderList(clients[i].getWishListCode(), true)));
+    	while(!st.isEmpty()) {
+    		for(int i = 0; i<clientsQuantity; i++) {
+    			if(i<3 && !st.isEmpty()) {
+    				Client temp = st.remove();
+    				temp.decreaseGames();
+    				if(temp.getGamesQuantity() > 0) {
+    					st.add(temp);
+    				}else {
+    					System.out.println(temp.toString());
+    				}
+    			}else if(!st.isEmpty()) {
+    				st.add(st.remove());
+    			}
+    		}
     	}
     }
     

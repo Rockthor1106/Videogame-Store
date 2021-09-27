@@ -69,16 +69,17 @@ public class VideoGameStore {
 		for(int i = 0; i<racksNumber && !founded; i++) {
 			if(racks.get(i).containsKey(key)) {
 				game = racks.get(i).getItem(key);
-				racks.get(i).getItem(key).decreaseAmount();
+				game.decreaseAmount();
+				//racks.get(i).getItem(key).decreaseAmount();
 				founded = true;
 			}
 		}
-		if(game.getAmount() > 0) {
+		if(game.getAmount() >= 0) {
 			return game;
 		}else return new VideoGame(0, 0, 0, '0');
 	}
 	
-	public int[] orderList(int[] gamesList, boolean sort) {
+	public VideoGame[] orderList(int[] gamesList, boolean sort) {
 		VideoGame[] games = new VideoGame[gamesList.length];
 		int[] gamesCodes = new int[gamesList.length];
 		for(int i = 0; i<gamesList.length; i++) {
@@ -95,7 +96,7 @@ public class VideoGameStore {
 		}
 	}
 	
-	private int[] bubbleSort(VideoGame[] games, int[] gamesCodes) {
+	private VideoGame[] bubbleSort(VideoGame[] games, int[] gamesCodes) {
 		for(int i = games.length; i>0; i--) {
 			for(int j = 0; j<i-1; j++) {
 				if(games[j].getRack() > games[j+1].getRack()) {
@@ -108,7 +109,7 @@ public class VideoGameStore {
 				}
 			}
 		}
-		return gamesCodes;
+		return games;
 	}
 	/*
 	public int[] insertionSort(VideoGame[] games, int[] gamesCodes) {
@@ -121,14 +122,4 @@ public class VideoGameStore {
 		}
 	}
 	*/
-	/*
-	public void registerRack(BufferedReader bReader, char letterId, int amountGames) throws IOException {
-		Rack rack = new Rack(letterId, amountGames);
-		for (int i = 0; i < amountGames; i++) {
-			String line = bReader.readLine();
-//			rack.addGameInRack(line[], null);
-		}
-		
-	}
-*/
 }
