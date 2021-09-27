@@ -9,64 +9,126 @@ public class VideoGameStore {
 	
 	private int cashiers;
 	private int racksNumber;
-	private ArrayList<Rack2> racks = new ArrayList<Rack2>(racksNumber);
-	private ArrayList<String> catalog = new ArrayList<String>();
+	private int clients;
+	
+	private ArrayList<Rack> racks;
 	
 	public VideoGameStore() {
+		
 	}
 	
+	public void setCashiers(int cashiers) {
+		this.cashiers = cashiers;
+	}
+	public void setRacksNumber(int racksNumber) {
+		this.racksNumber = racksNumber;
+	}
+	public void setClients(int clients) {
+		this.clients = clients;
+	}
 	public int getCashiers() {
 		return cashiers;
 	}
-
 	public int getRacksNumber() {
 		return racksNumber;
 	}
-	
-	public ArrayList<Rack2> getRacks() {
+	public int getClients() {
+		return clients;
+	}
+	public ArrayList<Rack> getRacks() {
 		return racks;
 	}
 	
-	public void registerRack(Rack2 rack) {
-		for (int i = 0; i < racks.size(); i++) {
-			racks.add(i, rack);
-		}
-	}
-	
-//	public void insertionSort(ArrayList<E> list) {
-//	E toCompare;
-//	for (int i = 1; i < list.size(); i++) {
-//		toCompare = list.get(i);
-//		for (int j = i; j <= 0; j--) {
-//		}
-//	}
-//}
-
 	public void importVideoGamesCatalog(String filename) throws IOException {
 		BufferedReader bReader = new BufferedReader(new FileReader(filename));
 		bReader.readLine(); //this line reads just the first cell in the CSV document
 		String line = bReader.readLine(); //this line reads the first rack
-		int counter = 0;
+		racks = new ArrayList<Rack>();
 		while(line != null) {
-			String[] parts = line.split(",");
-			for(int i = 0; i < Character.getNumericValue(parts[0].charAt(2)); i++) {
+			String[] parts = line.split(" ");
+			char letterId = parts[0].charAt(0);
+			int gamesAmount = Integer.parseInt(parts[1]);
+			Rack rack = new Rack(letterId, gamesAmount);
+			for(int i = 0; i<Integer.parseInt(parts[1]); i++) {
 				line = bReader.readLine();
-				if(line != null)
-				System.out.println(line);
+				String[] game = line.split(" ");
+				int key = Integer.parseInt(game[0]);
+				int price = Integer.parseInt(game[1]);
+				int amount = Integer.parseInt(game[2]);
+				rack.addItem(new VideoGame(key, price, amount, letterId), key);
 			}
-			System.out.println("----------");
-			
+			racks.add(rack);
+			line = bReader.readLine();
 		}
 		bReader.close();
 	}
 	
+	public VideoGame getVideoGame(int key) {
+		boolean founded = false;
+		VideoGame game = null;
+		for(int i = 0; i<racksNumber && !founded; i++) {
+			if(racks.get(i).containsKey(key)) {
+				game = racks.get(i).getItem(key);
+				racks.get(i).getItem(key).decreaseAmount();
+				founded = true;
+			}
+		}
+		if(game.getAmount() > 0) {
+			return game;
+		}else return new VideoGame(0, 0, 0, '0');
+	}
+	
+	public int[] orderList(int[] gamesList, boolean sort) {
+		VideoGame[] games = new VideoGame[gamesList.length];
+		int[] gamesCodes = new int[gamesList.length];
+		for(int i = 0; i<gamesList.length; i++) {
+			games[i] = getVideoGame(gamesList[i]);
+			if(games[i] != null) {
+				gamesCodes[i] = games[i].getKey();
+			}else gamesCodes[i] = 0;
+		}
+		if(sort) {
+			return bubbleSort(games, gamesCodes);
+		}else {
+			//return insertionSort(games, gamesCodes);
+			return null;
+		}
+	}
+	
+	private int[] bubbleSort(VideoGame[] games, int[] gamesCodes) {
+		for(int i = games.length; i>0; i--) {
+			for(int j = 0; j<i-1; j++) {
+				if(games[j].getRack() > games[j+1].getRack()) {
+					VideoGame temp = games[j+1];
+					int temp2 = gamesCodes[j+1];
+					games[j+1] = games[j];
+					gamesCodes[j+1] = gamesCodes[j];
+					games[j] = temp;
+					gamesCodes[j] = temp2;
+				}
+			}
+		}
+		return gamesCodes;
+	}
+	/*
+	public int[] insertionSort(VideoGame[] games, int[] gamesCodes) {
+		for(int i = 1; i<array.length; i++) {
+			for(int j = i; j>0 && array[j]<array[j-1]; j--) {
+				int temp = array[j];
+				array[j] = array[j-1];
+				array[j-1] = temp;
+			}
+		}
+	}
+	*/
+	/*
 	public void registerRack(BufferedReader bReader, char letterId, int amountGames) throws IOException {
-		Rack2 rack = new Rack2(letterId, amountGames);
+		Rack rack = new Rack(letterId, amountGames);
 		for (int i = 0; i < amountGames; i++) {
 			String line = bReader.readLine();
 //			rack.addGameInRack(line[], null);
 		}
 		
 	}
-
+*/
 }

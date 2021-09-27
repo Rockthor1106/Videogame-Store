@@ -22,19 +22,23 @@ public abstract class HashTable<I, K, V> {
 	public void addItem(I item, K key) {
 		int index = key.hashCode() % size;
 		if(table.get(index) == null) {
-			table.add(index, item);
+			table.set(index, item);
 		}else {
 			while(table.get(index) != null) {
-				if(index < size) {
+				if(index < size-1) {
 					index++;
 				}else {
 					index = 0;
 				}
 			}
-			table.add(index, item);
+			table.set(index, item);
 		}
 	}
+	
+	public ArrayList<I> getTable(){
+		return table;
+	}
 
-	public abstract boolean containsKey(K key);
-	public abstract I getItem(K key);
+	//public abstract boolean containsKey(K key);
+	//public abstract I getItem(K key);
 }
