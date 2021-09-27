@@ -9,7 +9,7 @@ public class VideoGameStore {
 	
 	private int cashiers;
 	private int racksNumber;
-	private ArrayList<Rack<Integer, String>> racks = new ArrayList<Rack<Integer, String>>(racksNumber);
+	private ArrayList<Rack2> racks = new ArrayList<Rack2>(racksNumber);
 	private ArrayList<String> catalog = new ArrayList<String>();
 	
 	public VideoGameStore() {
@@ -23,11 +23,11 @@ public class VideoGameStore {
 		return racksNumber;
 	}
 	
-	public ArrayList<Rack<Integer, String>> getRacks() {
+	public ArrayList<Rack2> getRacks() {
 		return racks;
 	}
 	
-	public void registerRack(Rack<Integer, String> rack) {
+	public void registerRack(Rack2 rack) {
 		for (int i = 0; i < racks.size(); i++) {
 			racks.add(i, rack);
 		}
@@ -61,7 +61,7 @@ public class VideoGameStore {
 	}
 	
 	public void registerRack(BufferedReader bReader, char letterId, int amountGames) throws IOException {
-		Rack<Integer, String> rack = new Rack<>(letterId, amountGames);
+		Rack2 rack = new Rack2(letterId, amountGames);
 		for (int i = 0; i < amountGames; i++) {
 			String line = bReader.readLine();
 //			rack.addGameInRack(line[], null);
