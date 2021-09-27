@@ -13,7 +13,6 @@ public class VideoGameStore {
 	private ArrayList<String> catalog = new ArrayList<String>();
 	
 	public VideoGameStore() {
-		
 	}
 	
 	public int getCashiers() {

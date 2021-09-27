@@ -6,8 +6,8 @@ public class VideoGame extends HashItem<Integer, Integer>{
 
 	private int amount;
 	
-	public VideoGame(int k, int v, int a) {
-		super(k, v);
+	public VideoGame(int key, int value, int a) {
+		super(key, value);
 		amount = a;
 	}
 	
