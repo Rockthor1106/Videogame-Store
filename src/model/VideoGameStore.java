@@ -70,7 +70,6 @@ public class VideoGameStore {
 			if(racks.get(i).containsKey(key)) {
 				game = racks.get(i).getItem(key);
 				game.decreaseAmount();
-				//racks.get(i).getItem(key).decreaseAmount();
 				founded = true;
 			}
 		}
@@ -89,37 +88,32 @@ public class VideoGameStore {
 			}else gamesCodes[i] = 0;
 		}
 		if(sort) {
-			return bubbleSort(games, gamesCodes);
+			return bubbleSort(games);
 		}else {
-			//return insertionSort(games, gamesCodes);
-			return null;
+			return insertionSort(games);
 		}
 	}
 	
-	private VideoGame[] bubbleSort(VideoGame[] games, int[] gamesCodes) {
+	private VideoGame[] bubbleSort(VideoGame[] games) {
 		for(int i = games.length; i>0; i--) {
 			for(int j = 0; j<i-1; j++) {
 				if(games[j].getRack() > games[j+1].getRack()) {
 					VideoGame temp = games[j+1];
-					int temp2 = gamesCodes[j+1];
 					games[j+1] = games[j];
-					gamesCodes[j+1] = gamesCodes[j];
 					games[j] = temp;
-					gamesCodes[j] = temp2;
 				}
 			}
 		}
 		return games;
 	}
-	/*
-	public int[] insertionSort(VideoGame[] games, int[] gamesCodes) {
-		for(int i = 1; i<array.length; i++) {
-			for(int j = i; j>0 && array[j]<array[j-1]; j--) {
-				int temp = array[j];
-				array[j] = array[j-1];
-				array[j-1] = temp;
+	public VideoGame[] insertionSort(VideoGame[] games) {
+		for(int i = 1; i<games.length; i++) {
+			for(int j = i; j>0 && games[j].getRack()<games[j-1].getRack(); j--) {
+				VideoGame temp = games[j];
+				games[j] = games[j-1];
+				games[j-1] = temp;
 			}
 		}
+		return games;
 	}
-	*/
 }
