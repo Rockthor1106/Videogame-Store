@@ -2,13 +2,14 @@ package ui;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -19,6 +20,23 @@ import model.VideoGameStore;
 
 public class MainController {
 	
+    public MainController(VideoGameStore videoGameStore) {
+    	this.videoGameStore = videoGameStore;
+    }
+    
+    public MainController() {
+    	
+    }
+    
+    public void alert(AlertType alertType, String alertTitle, String Alertmsg) {
+    	Alert alert = new Alert(alertType);
+    	alert.setTitle(alertTitle);
+    	alert.setHeaderText(null);
+    	alert.setContentText(Alertmsg);
+    	alert.show();
+    }
+	
+	//----------------------------------------InputScreen.fxml---------------------------------------------
     @FXML
     private BorderPane mainPane;
 
@@ -38,16 +56,8 @@ public class MainController {
 
     private Client[] clients;
     
-    public MainController(VideoGameStore videoGameStore) {
-    	this.videoGameStore = videoGameStore;
-    }
-    
-    public MainController() {
-    	
-    }
-    
     @FXML
-    public void process(ActionEvent event) {
+    public void process(ActionEvent event) throws IOException {
     	if (cashiersNumber.getText().equals("") || racksNumber.getText().equals("") || clientsNumber.getText().equals("") || gamesToBuy.getText().equals("")) {
 			alert(AlertType.WARNING, "Setting of video game store conditions", "Please fill all blanks before to continue");
 		}
@@ -63,6 +73,9 @@ public class MainController {
 			String[] clientsGames = gamesToBuy.getText().split("\n");
 			
 			clientsActions(clientsQuantity, clientsGames);
+			
+			//display next screen
+			chooseSortingScreen(event);
 		}
     }
     
@@ -75,7 +88,7 @@ public class MainController {
 			}
 			clients[i] = new Client(Integer.parseInt(strs[0]), games, i+1+(games.length));
 		}
-    	//bubblesort
+    	//bubbleSort
     	for(int i = clients.length; i>0; i--) {
 			for(int j = 0; j<i-1; j++) {
 				if(clients[j].getTime() > clients[j+1].getTime()) {
@@ -106,14 +119,6 @@ public class MainController {
     		}
     	}
     }
-    
-    public void alert(AlertType alertType, String alertTitle, String Alertmsg) {
-    	Alert alert = new Alert(alertType);
-    	alert.setTitle(alertTitle);
-    	alert.setHeaderText(null);
-    	alert.setContentText(Alertmsg);
-    	alert.show();
-    }
 
 	@FXML
 	public void importVideoGamesCatalog(ActionEvent event) {
@@ -131,4 +136,38 @@ public class MainController {
 			}
 		}
 	}
+	//-------------------------------------------------------------------------------------------------------------
+	
+	//------------------------------------------ChooseSortingScreen.fxml----------------------------------------------
+	@FXML
+	void chooseSortingScreen(ActionEvent event) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ChooseSortingScreen.fxml"));
+		fxmlLoader.setController(this);    	
+		Parent loginScreen = fxmlLoader.load();
+		mainPane.getChildren().clear();
+    	mainPane.setTop(loginScreen);
+    	alert(AlertType.INFORMATION, "Chosee a sorting", "As result of this phase the wish lists will be sorted to get the best order to pick up the games");
+	}
+	
+    @FXML
+    void sortingOne(ActionEvent event) throws IOException {
+    	OrderToPickUpGamesScreen(event);
+    }
+
+    @FXML
+    void sortingTwo(ActionEvent event) throws IOException {
+    	OrderToPickUpGamesScreen(event);
+    }
+	//-------------------------------------------------------------------------------------------------------------
+    
+    //--------------------------------OrderToPickUpGamesScreen.fxml------------------------------------------------
+	@FXML
+	void OrderToPickUpGamesScreen(ActionEvent event) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("OrderToPickUpGamesScreen.fxml"));
+		fxmlLoader.setController(this);    	
+		Parent loginScreen = fxmlLoader.load();
+		mainPane.getChildren().clear();
+    	mainPane.setTop(loginScreen);
+	}
+    //-------------------------------------------------------------------------------------------------------------
 }
