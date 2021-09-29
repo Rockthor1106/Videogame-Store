@@ -15,7 +15,7 @@
    <top>
       <BorderPane prefHeight="157.0" prefWidth="1044.0" BorderPane.alignment="CENTER">
          <center>
-            <Label fx:id="section" text="After Section Three" BorderPane.alignment="CENTER">
+            <Label text="After Section Three" BorderPane.alignment="CENTER">
                <font>
                   <Font size="20.0" />
                </font>
@@ -28,7 +28,7 @@
             <HBox prefHeight="224.0" prefWidth="1044.0">
                <children>
                   <Pane prefHeight="150.0" prefWidth="98.0" />
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="client1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/client.png" />
                      </image>
@@ -38,7 +38,7 @@
                         <Font size="16.0" />
                      </font>
                   </TextArea>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="client2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/client.png" />
                      </image>
@@ -47,7 +47,7 @@
                      <font>
                         <Font size="16.0" />
                      </font></TextArea>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="client3" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/client.png" />
                      </image>
@@ -62,7 +62,7 @@
             <HBox prefHeight="150.0" prefWidth="1044.0">
                <children>
                   <Pane prefHeight="150.0" prefWidth="237.0" />
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="client4" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/client.png" />
                      </image>
@@ -71,7 +71,7 @@
                      <font>
                         <Font size="16.0" />
                      </font></TextArea>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="client5" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/client.png" />
                      </image>

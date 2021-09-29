@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
@@ -15,7 +14,7 @@
    <top>
       <BorderPane prefHeight="157.0" prefWidth="1044.0" BorderPane.alignment="CENTER">
          <center>
-            <Label text="Payment Phase" BorderPane.alignment="CENTER">
+            <Label text="Exit Order" BorderPane.alignment="CENTER">
                <font>
                   <Font size="25.0" />
                </font>
@@ -25,64 +24,7 @@
    <center>
       <VBox prefHeight="340.0" prefWidth="1044.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="95.0" prefWidth="1044.0">
-               <children>
-                  <Pane prefHeight="91.0" prefWidth="170.0" />
-                  <ImageView fx:id="cashier1" fitHeight="91.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/cashier-machine.png" />
-                     </image>
-                  </ImageView>
-                  <Pane prefHeight="200.0" prefWidth="200.0" />
-                  <ImageView fx:id="cashier2" fitHeight="91.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/cashier-machine.png" />
-                     </image>
-                  </ImageView>
-                  <Pane prefHeight="200.0" prefWidth="200.0" />
-                  <ImageView fx:id="cashier3" fitHeight="91.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/cashier-machine.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </HBox>
-            <HBox prefHeight="113.0" prefWidth="1044.0">
-               <children>
-                  <Pane prefHeight="113.0" prefWidth="166.0" />
-                  <ImageView fx:id="clientCashier1" fitHeight="113.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                     <image>
-                        <Image url="@../../images/client.png" />
-                     </image>
-                  </ImageView>
-                  <TextArea fx:id="listClientCashier1" editable="false" prefHeight="91.0" prefWidth="82.0" visible="false">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </TextArea>
-                  <Pane prefHeight="113.0" prefWidth="83.0" />
-                  <ImageView fx:id="clientCashier2" fitHeight="113.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                     <image>
-                        <Image url="@../../images/client.png" />
-                     </image>
-                  </ImageView>
-                  <TextArea fx:id="listClientCashier2" editable="false" prefHeight="200.0" prefWidth="82.0" visible="false">
-                     <font>
-                        <Font size="16.0" />
-                     </font></TextArea>
-                  <Pane prefHeight="113.0" prefWidth="108.0" />
-                  <ImageView fx:id="clientCashier3" fitHeight="113.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                     <image>
-                        <Image url="@../../images/client.png" />
-                     </image>
-                  </ImageView>
-                  <TextArea fx:id="listClientCashier3" editable="false" prefHeight="150.0" prefWidth="82.0" visible="false">
-                     <font>
-                        <Font size="16.0" />
-                     </font></TextArea>
-               </children>
-            </HBox>
-            <Pane prefHeight="47.0" prefWidth="1044.0" />
+            <Pane prefHeight="117.0" prefWidth="1044.0" />
             <HBox prefHeight="113.0" prefWidth="1044.0">
                <children>
                   <Pane prefHeight="113.0" prefWidth="46.0" />
@@ -142,14 +84,6 @@
       </VBox>
    </center>
    <bottom>
-      <BorderPane prefHeight="74.0" prefWidth="1044.0" BorderPane.alignment="CENTER">
-         <center>
-            <Button mnemonicParsing="false" onAction="#startPaymentProcess" text="Next" BorderPane.alignment="CENTER">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Button>
-         </center>
-      </BorderPane>
+      <BorderPane prefHeight="74.0" prefWidth="1044.0" BorderPane.alignment="CENTER" />
    </bottom>
 </BorderPane>
