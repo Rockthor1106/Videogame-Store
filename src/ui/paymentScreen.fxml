@@ -15,7 +15,7 @@
    <top>
       <BorderPane prefHeight="157.0" prefWidth="1044.0" BorderPane.alignment="CENTER">
          <center>
-            <Label fx:id="section" text="Payment Phase" BorderPane.alignment="CENTER">
+            <Label text="Payment Phase" BorderPane.alignment="CENTER">
                <font>
                   <Font size="25.0" />
                </font>
@@ -28,19 +28,19 @@
             <HBox prefHeight="95.0" prefWidth="1044.0">
                <children>
                   <Pane prefHeight="91.0" prefWidth="170.0" />
-                  <ImageView fitHeight="91.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="cashier1" fitHeight="91.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/cashier-machine.png" />
                      </image>
                   </ImageView>
                   <Pane prefHeight="200.0" prefWidth="200.0" />
-                  <ImageView fitHeight="91.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="cashier2" fitHeight="91.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/cashier-machine.png" />
                      </image>
                   </ImageView>
                   <Pane prefHeight="200.0" prefWidth="200.0" />
-                  <ImageView fitHeight="91.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="cashier3" fitHeight="91.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/cashier-machine.png" />
                      </image>
@@ -50,33 +50,33 @@
             <HBox prefHeight="113.0" prefWidth="1044.0">
                <children>
                   <Pane prefHeight="113.0" prefWidth="166.0" />
-                  <ImageView fitHeight="113.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="clientCashier1" fitHeight="113.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../../images/client.png" />
                      </image>
                   </ImageView>
-                  <TextArea editable="false" prefHeight="91.0" prefWidth="82.0">
+                  <TextArea fx:id="listClientCashier1" editable="false" prefHeight="91.0" prefWidth="82.0" visible="false">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </TextArea>
                   <Pane prefHeight="113.0" prefWidth="83.0" />
-                  <ImageView fitHeight="113.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="clientCashier2" fitHeight="113.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../../images/client.png" />
                      </image>
                   </ImageView>
-                  <TextArea editable="false" prefHeight="200.0" prefWidth="82.0">
+                  <TextArea fx:id="listClientCashier2" editable="false" prefHeight="200.0" prefWidth="82.0" visible="false">
                      <font>
                         <Font size="16.0" />
                      </font></TextArea>
                   <Pane prefHeight="113.0" prefWidth="108.0" />
-                  <ImageView fitHeight="113.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="clientCashier3" fitHeight="113.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../../images/client.png" />
                      </image>
                   </ImageView>
-                  <TextArea editable="false" prefHeight="150.0" prefWidth="82.0">
+                  <TextArea fx:id="listClientCashier3" editable="false" prefHeight="150.0" prefWidth="82.0" visible="false">
                      <font>
                         <Font size="16.0" />
                      </font></TextArea>
@@ -86,51 +86,96 @@
             <HBox prefHeight="113.0" prefWidth="1044.0">
                <children>
                   <Pane prefHeight="113.0" prefWidth="46.0" />
-                  <ImageView fitHeight="113.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/client.png" />
-                     </image>
-                  </ImageView>
+                  <VBox prefHeight="126.0" prefWidth="106.0">
+                     <children>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                           <center>
+                              <Label fx:id="clientID1" BorderPane.alignment="CENTER" />
+                           </center>
+                        </BorderPane>
+                        <ImageView fx:id="client1" fitHeight="113.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/client.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </VBox>
                   <TextArea fx:id="clientList1" editable="false" prefHeight="91.0" prefWidth="82.0">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </TextArea>
-                  <ImageView fitHeight="113.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/client.png" />
-                     </image>
-                  </ImageView>
+                  <VBox prefHeight="126.0" prefWidth="106.0">
+                     <children>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                           <center>
+                              <Label fx:id="clientID2" BorderPane.alignment="CENTER" />
+                           </center>
+                        </BorderPane>
+                        <ImageView fx:id="client2" fitHeight="113.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/client.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </VBox>
                   <TextArea fx:id="clientList2" prefHeight="113.0" prefWidth="82.0" wrapText="true">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </TextArea>
-                  <ImageView fitHeight="113.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/client.png" />
-                     </image>
-                  </ImageView>
+                  <VBox prefHeight="126.0" prefWidth="106.0">
+                     <children>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                           <center>
+                              <Label fx:id="clientID3" BorderPane.alignment="CENTER" />
+                           </center>
+                        </BorderPane>
+                        <ImageView fx:id="client3" fitHeight="113.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/client.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </VBox>
                   <TextArea fx:id="clientList3" editable="false" prefHeight="150.0" prefWidth="82.0">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </TextArea>
-                  <ImageView fitHeight="113.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/client.png" />
-                     </image>
-                  </ImageView>
+                  <VBox prefHeight="126.0" prefWidth="106.0">
+                     <children>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                           <center>
+                              <Label fx:id="clientID4" BorderPane.alignment="CENTER" />
+                           </center>
+                        </BorderPane>
+                        <ImageView fx:id="client4" fitHeight="113.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/client.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </VBox>
                   <TextArea fx:id="clientList4" editable="false" prefHeight="200.0" prefWidth="82.0">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </TextArea>
-                  <ImageView fitHeight="113.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/client.png" />
-                     </image>
-                  </ImageView>
+                  <VBox prefHeight="126.0" prefWidth="106.0">
+                     <children>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                           <center>
+                              <Label fx:id="clientID5" BorderPane.alignment="CENTER" />
+                           </center>
+                        </BorderPane>
+                        <ImageView fx:id="client5" fitHeight="113.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/client.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </VBox>
                   <TextArea fx:id="clientList5" editable="false" prefHeight="150.0" prefWidth="82.0">
                      <font>
                         <Font size="16.0" />
@@ -144,7 +189,7 @@
    <bottom>
       <BorderPane prefHeight="74.0" prefWidth="1044.0" BorderPane.alignment="CENTER">
          <center>
-            <Button mnemonicParsing="false" text="Next" BorderPane.alignment="CENTER">
+            <Button mnemonicParsing="false" onAction="#startPaymentProcess" text="Next" BorderPane.alignment="CENTER">
                <font>
                   <Font size="16.0" />
                </font>

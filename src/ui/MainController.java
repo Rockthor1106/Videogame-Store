@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import model.Client;
@@ -58,6 +59,7 @@ public class MainController {
     private Client[] clients;
     
     private int clientsQuantity;
+    private int cashiersQuantity;
     private String[] clientsGames;
     
     @FXML
@@ -66,7 +68,7 @@ public class MainController {
 			alert(AlertType.WARNING, "Setting of video game store conditions", "Please fill all blanks before to continue");
 		}
     	else {
-			int cashiersQuantity = Integer.parseInt(cashiersNumber.getText());
+			cashiersQuantity = Integer.parseInt(cashiersNumber.getText());
 			int racksQuantity = Integer.parseInt(racksNumber.getText());
 			clientsQuantity = Integer.parseInt(clientsNumber.getText());
 			
@@ -81,18 +83,21 @@ public class MainController {
 		}
     }
     
-    private void clientsActions(int clientsQuantity, String[] clientsGames, boolean phase) { //phase = true, after phase 2 and phase = false, after phase 3
+    private void clientsActions(int clientsQuantity, String[] clientsGames, int phase) { 
     	for(int i = 0; i<clientsQuantity; i++) {
 			String[] strs = clientsGames[i].split(" "); 
 			int[] games = new int[strs.length-1];
 			for(int j = 1; j<= games.length; j++) {
 				games[j-1] = Integer.parseInt(strs[j]);
 			}
-			if(phase == true) {
+			if(phase == 1) { //after phase two
 				clients[i] = new Client(Integer.parseInt(strs[0]), games, i+1);
 			}
-			else {
+			else if(phase == 2) { //after phase three
 				clients[i].increaseTime(clients[i].getGamesQuantity());
+			}
+			else if (phase == 3) { //payment phase
+				clients[i].increaseTime((clients[i].getGamesQuantity()+clients[i].getGamesQuantity()));
 			}
 			
 		}
@@ -140,7 +145,7 @@ public class MainController {
 	
     @FXML
     void sortingOne(ActionEvent event) throws IOException {
-    	clientsActions(clientsQuantity, clientsGames, true);
+    	clientsActions(clientsQuantity, clientsGames, 1);
     	for(int i = 0; i<clients.length; i++) {
     		clients[i].setGamesToBuy(videoGameStore.orderList(clients[i].getWishListCode(), true));
     	}  	
@@ -156,7 +161,7 @@ public class MainController {
 
 	//-------------------------------------------------------------------------------------------------------------
     
-    //--------------------------------OrderToPickUpGamesScreen.fxml------------------------------------------------
+    //--------------------------------afterSectionTwo.fxml------------------------------------------------
 
     @FXML
     private TextArea clientList1;
@@ -174,7 +179,20 @@ public class MainController {
     private TextArea clientList5;
     
     @FXML
-    private Label section;
+    private Label clientID1;
+    
+    @FXML
+    private Label clientID2;
+    
+    @FXML
+    private Label clientID3;
+
+    @FXML
+    private Label clientID4;
+    
+    @FXML
+    private Label clientID5;
+    
     
 	@FXML
 	void afterSectionTwoScreen(ActionEvent event) throws IOException {
@@ -187,21 +205,51 @@ public class MainController {
 		switch (clientsQuantity) {
 		case 1:
 				clientList1.setText(clients[0].toStringGames());
+				client2.setVisible(false);
+				clientList2.setVisible(false);
+				client3.setVisible(false);
+				clientList3.setVisible(false);
+				client4.setVisible(false);
+				clientList4.setVisible(false);
+				client5.setVisible(false);
+				clientList5.setVisible(false);
+				clientID1.setText(Integer.toString(clients[0].getID()));
 			break;
 		case 2:
 				clientList1.setText(clients[0].toStringGames());
 				clientList2.setText(clients[1].toStringGames());
+				client3.setVisible(false);
+				clientList3.setVisible(false);
+				client4.setVisible(false);
+				clientList4.setVisible(false);
+				client5.setVisible(false);
+				clientList5.setVisible(false);
+				clientID1.setText(Integer.toString(clients[0].getID()));
+				clientID2.setText(Integer.toString(clients[1].getID()));
 			break;
 		case 3:
 				clientList1.setText(clients[0].toStringGames());
 				clientList2.setText(clients[1].toStringGames());
 				clientList3.setText(clients[2].toStringGames());
+				client4.setVisible(false);
+				clientList4.setVisible(false);
+				client5.setVisible(false);
+				clientList5.setVisible(false);
+				clientID1.setText(Integer.toString(clients[0].getID()));
+				clientID2.setText(Integer.toString(clients[1].getID()));
+				clientID3.setText(Integer.toString(clients[2].getID()));
 			break;
 		case 4:
 				clientList1.setText(clients[0].toStringGames());
 				clientList2.setText(clients[1].toStringGames());
 				clientList3.setText(clients[2].toStringGames());
 				clientList4.setText(clients[3].toStringGames());
+				client5.setVisible(false);
+				clientList5.setVisible(false);
+				clientID1.setText(Integer.toString(clients[0].getID()));
+				clientID2.setText(Integer.toString(clients[1].getID()));
+				clientID3.setText(Integer.toString(clients[2].getID()));
+				clientID4.setText(Integer.toString(clients[3].getID()));
 			break;
 		case 5:
 				clientList1.setText(clients[0].toStringGames());
@@ -209,6 +257,11 @@ public class MainController {
 				clientList3.setText(clients[2].toStringGames());
 				clientList4.setText(clients[3].toStringGames());
 				clientList5.setText(clients[4].toStringGames());
+				clientID1.setText(Integer.toString(clients[0].getID()));
+				clientID2.setText(Integer.toString(clients[1].getID()));
+				clientID3.setText(Integer.toString(clients[2].getID()));
+				clientID4.setText(Integer.toString(clients[3].getID()));
+				clientID5.setText(Integer.toString(clients[4].getID()));
 			break;		
 		default:
 			break;
@@ -226,21 +279,51 @@ public class MainController {
 		switch (clientsQuantity) {
 		case 1:
 				clientList1.setText(clients[0].toStringGames2());
+				client2.setVisible(false);
+				clientList2.setVisible(false);
+				client3.setVisible(false);
+				clientList3.setVisible(false);
+				client4.setVisible(false);
+				clientList4.setVisible(false);
+				client5.setVisible(false);
+				clientList5.setVisible(false);
+				clientID1.setText(Integer.toString(clients[0].getID()));
 			break;
 		case 2:
 				clientList1.setText(clients[0].toStringGames2());
 				clientList2.setText(clients[1].toStringGames2());
+				client3.setVisible(false);
+				clientList3.setVisible(false);
+				client4.setVisible(false);
+				clientList4.setVisible(false);
+				client5.setVisible(false);
+				clientList5.setVisible(false);
+				clientID1.setText(Integer.toString(clients[0].getID()));
+				clientID2.setText(Integer.toString(clients[1].getID()));
 			break;
 		case 3:
 				clientList1.setText(clients[0].toStringGames2());
 				clientList2.setText(clients[1].toStringGames2());
 				clientList3.setText(clients[2].toStringGames2());
+				client4.setVisible(false);
+				clientList4.setVisible(false);
+				client5.setVisible(false);
+				clientList5.setVisible(false);
+				clientID1.setText(Integer.toString(clients[0].getID()));
+				clientID2.setText(Integer.toString(clients[1].getID()));
+				clientID3.setText(Integer.toString(clients[2].getID()));
 			break;
 		case 4:
 				clientList1.setText(clients[0].toStringGames2());
 				clientList2.setText(clients[1].toStringGames2());
 				clientList3.setText(clients[2].toStringGames2());
 				clientList4.setText(clients[3].toStringGames2());
+				client5.setVisible(false);
+				clientList5.setVisible(false);
+				clientID1.setText(Integer.toString(clients[0].getID()));
+				clientID2.setText(Integer.toString(clients[1].getID()));
+				clientID3.setText(Integer.toString(clients[2].getID()));
+				clientID4.setText(Integer.toString(clients[3].getID()));
 			break;
 		case 5:
 				clientList1.setText(clients[0].toStringGames2());
@@ -248,6 +331,11 @@ public class MainController {
 				clientList3.setText(clients[2].toStringGames2());
 				clientList4.setText(clients[3].toStringGames2());
 				clientList5.setText(clients[4].toStringGames2());
+				clientID1.setText(Integer.toString(clients[0].getID()));
+				clientID2.setText(Integer.toString(clients[1].getID()));
+				clientID3.setText(Integer.toString(clients[2].getID()));
+				clientID4.setText(Integer.toString(clients[3].getID()));
+				clientID5.setText(Integer.toString(clients[4].getID()));
 			break;		
 		default:
 			break;
@@ -278,7 +366,49 @@ public class MainController {
 	}
     //-------------------------------------------------------------------------------------------------------------
 	
-	//--------------------------------------Payment Screen---------------------------------------------------------
+	//--------------------------------------PaymentScreen.fxml---------------------------------------------------------
+	@FXML
+    private ImageView clientCashier1;
+
+    @FXML
+    private TextArea listClientCashier1;
+
+    @FXML
+    private ImageView clientCashier2;
+
+    @FXML
+    private TextArea listClientCashier2;
+
+    @FXML
+    private ImageView clientCashier3;
+
+    @FXML
+    private TextArea listClientCashier3;
+
+    @FXML
+    private ImageView client1;
+
+    @FXML
+    private ImageView client2;
+
+    @FXML
+    private ImageView client3;
+
+    @FXML
+    private ImageView client4;
+
+    @FXML
+    private ImageView client5;
+
+    @FXML
+    private ImageView cashier1;
+
+    @FXML
+    private ImageView cashier2;
+
+    @FXML
+    private ImageView cashier3;
+	
 	@FXML
 	void paymentScreen(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("paymentScreen.fxml"));
@@ -287,24 +417,67 @@ public class MainController {
 		mainPane.getChildren().clear();
     	mainPane.setTop(loginScreen);
     	
+    	switch (cashiersQuantity) {
+		case 1:
+				cashier2.setVisible(false);
+				cashier3.setVisible(false);
+			break;
+		case 2:
+				cashier3.setVisible(false);
+			break;
+
+		default:
+			break;
+		}
+    	
     	switch (clientsQuantity) {
 		case 1:
 				clientList1.setText(clients[0].toStringGames2());
+				client2.setVisible(false);
+				clientList2.setVisible(false);
+				client3.setVisible(false);
+				clientList3.setVisible(false);
+				client4.setVisible(false);
+				clientList4.setVisible(false);
+				client5.setVisible(false);
+				clientList5.setVisible(false);
+				clientID1.setText(Integer.toString(clients[0].getID()));
 			break;
 		case 2:
 				clientList1.setText(clients[0].toStringGames2());
 				clientList2.setText(clients[1].toStringGames2());
+				client3.setVisible(false);
+				clientList3.setVisible(false);
+				client4.setVisible(false);
+				clientList4.setVisible(false);
+				client5.setVisible(false);
+				clientList5.setVisible(false);
+				clientID1.setText(Integer.toString(clients[0].getID()));
+				clientID2.setText(Integer.toString(clients[1].getID()));
 			break;
 		case 3:
 				clientList1.setText(clients[0].toStringGames2());
 				clientList2.setText(clients[1].toStringGames2());
 				clientList3.setText(clients[2].toStringGames2());
+				client4.setVisible(false);
+				clientList4.setVisible(false);
+				client5.setVisible(false);
+				clientList5.setVisible(false);
+				clientID1.setText(Integer.toString(clients[0].getID()));
+				clientID2.setText(Integer.toString(clients[1].getID()));
+				clientID3.setText(Integer.toString(clients[2].getID()));
 			break;
 		case 4:
 				clientList1.setText(clients[0].toStringGames2());
 				clientList2.setText(clients[1].toStringGames2());
 				clientList3.setText(clients[2].toStringGames2());
 				clientList4.setText(clients[3].toStringGames2());
+				client5.setVisible(false);
+				clientList5.setVisible(false);
+				clientID1.setText(Integer.toString(clients[0].getID()));
+				clientID2.setText(Integer.toString(clients[1].getID()));
+				clientID3.setText(Integer.toString(clients[2].getID()));
+				clientID4.setText(Integer.toString(clients[3].getID()));
 			break;
 		case 5:
 				clientList1.setText(clients[0].toStringGames2());
@@ -312,8 +485,563 @@ public class MainController {
 				clientList3.setText(clients[2].toStringGames2());
 				clientList4.setText(clients[3].toStringGames2());
 				clientList5.setText(clients[4].toStringGames2());
+				clientID1.setText(Integer.toString(clients[0].getID()));
+				clientID2.setText(Integer.toString(clients[1].getID()));
+				clientID3.setText(Integer.toString(clients[2].getID()));
+				clientID4.setText(Integer.toString(clients[3].getID()));
+				clientID5.setText(Integer.toString(clients[4].getID()));
 			break;		
 		default:
+    	}
+	}
+	
+	@FXML
+	public void startPaymentProcess(ActionEvent event) throws IOException {
+		
+		switch (cashiersQuantity) {
+		case 1:
+				alert(AlertType.INFORMATION, "Payment Phase", "In this case each client must go through the cashier, so they will go out in the same order");
+				exitOrderScreen(event);
+		case 2:
+			if (clientsQuantity == 1) {
+				
+				//client 1
+		    	clientCashier1.setVisible(true);
+		    	listClientCashier1.setVisible(true);
+		    	listClientCashier1.setText(clients[0].toStringGames2());
+		    	client1.setVisible(false);
+		    	clientList1.setVisible(false);
+		    	
+		    	exitOrderScreen(event); //the process has finished
+			}
+			else if (clientsQuantity == 2) {
+				//client 1
+		    	clientCashier1.setVisible(true);
+		    	listClientCashier1.setVisible(true);
+		    	listClientCashier1.setText(clients[0].toStringGames2());
+		    	client1.setVisible(false);
+		    	clientList1.setVisible(false);
+		    	
+				//client 2
+		    	clientCashier2.setVisible(true);
+		    	listClientCashier2.setVisible(true);
+		    	listClientCashier2.setText(clients[1].toStringGames2());
+		    	client2.setVisible(false);
+		    	clientList2.setVisible(false);
+		    	
+		    	exitOrderScreen(event);
+			}
+			else if (clientsQuantity == 3) {
+				
+				//client 1
+		    	clientCashier1.setVisible(true);
+		    	listClientCashier1.setVisible(true);
+		    	listClientCashier1.setText(clients[0].toStringGames2());
+		    	client1.setVisible(false);
+		    	clientList1.setVisible(false);
+		    	
+				//client 2
+		    	clientCashier2.setVisible(true);
+		    	listClientCashier2.setVisible(true);
+		    	listClientCashier2.setText(clients[1].toStringGames2());
+		    	client2.setVisible(false);
+		    	clientList2.setVisible(false);
+		    	
+				//client 3
+		    	clientCashier1.setVisible(true);
+		    	listClientCashier1.setVisible(true);
+		    	listClientCashier1.setText(clients[2].toStringGames2());
+		    	client3.setVisible(false);
+		    	clientList3.setVisible(false);
+		    	
+		    	exitOrderScreen(event);
+			}
+			else if (clientsQuantity == 4) {
+				
+				//client 1
+		    	clientCashier1.setVisible(true);
+		    	listClientCashier1.setVisible(true);
+		    	listClientCashier1.setText(clients[0].toStringGames2());
+		    	client1.setVisible(false);
+		    	clientList1.setVisible(false);
+		    	
+				//client 2
+		    	clientCashier2.setVisible(true);
+		    	listClientCashier2.setVisible(true);
+		    	listClientCashier2.setText(clients[1].toStringGames2());
+		    	client2.setVisible(false);
+		    	clientList2.setVisible(false);
+		    	
+				//client 3
+		    	clientCashier1.setVisible(true);
+		    	listClientCashier1.setVisible(true);
+		    	listClientCashier1.setText(clients[2].toStringGames2());
+		    	client3.setVisible(false);
+		    	clientList3.setVisible(false);
+		    	
+				//client 4
+		    	clientCashier2.setVisible(true);
+		    	listClientCashier2.setVisible(true);
+		    	listClientCashier2.setText(clients[3].toStringGames2());
+		    	client4.setVisible(false);
+		    	clientList4.setVisible(false);
+		    	
+		    	exitOrderScreen(event);
+			}
+			else if (clientsQuantity == 5) {
+				
+				
+				//client 1
+		    	clientCashier1.setVisible(true);
+		    	listClientCashier1.setVisible(true);
+		    	listClientCashier1.setText(clients[0].toStringGames2());
+		    	client1.setVisible(false);
+		    	clientList1.setVisible(false);
+		    	
+				//client 2
+		    	clientCashier2.setVisible(true);
+		    	listClientCashier2.setVisible(true);
+		    	listClientCashier2.setText(clients[1].toStringGames2());
+		    	client2.setVisible(false);
+		    	clientList2.setVisible(false);
+		    	
+				//client 3
+		    	clientCashier1.setVisible(true);
+		    	listClientCashier1.setVisible(true);
+		    	listClientCashier1.setText(clients[2].toStringGames2());
+		    	client3.setVisible(false);
+		    	clientList3.setVisible(false);
+		    	
+				//client 4
+		    	clientCashier2.setVisible(true);
+		    	listClientCashier2.setVisible(true);
+		    	listClientCashier2.setText(clients[3].toStringGames2());
+		    	client4.setVisible(false);
+		    	clientList4.setVisible(false);
+		    	
+				//client 5
+		    	clientCashier1.setVisible(true);
+		    	listClientCashier1.setVisible(true);
+		    	listClientCashier1.setText(clients[4].toStringGames2());
+		    	client5.setVisible(false);
+		    	clientList5.setVisible(false);
+		    	
+		    	exitOrderScreen(event);
+			}
+			break;
+		case 3:
+			if (clientsQuantity == 1) {
+				
+				//client 1
+		    	clientCashier1.setVisible(true);
+		    	listClientCashier1.setVisible(true);
+		    	listClientCashier1.setText(clients[0].toStringGames2());
+		    	client1.setVisible(false);
+		    	clientList1.setVisible(false);
+		    	
+		    	exitOrderScreen(event); //the process has finished
+			}
+			else if (clientsQuantity == 2) {
+				//client 1
+		    	clientCashier1.setVisible(true);
+		    	listClientCashier1.setVisible(true);
+		    	listClientCashier1.setText(clients[0].toStringGames2());
+		    	client1.setVisible(false);
+		    	clientList1.setVisible(false);
+		    	
+				//client 2
+		    	clientCashier2.setVisible(true);
+		    	listClientCashier2.setVisible(true);
+		    	listClientCashier2.setText(clients[1].toStringGames2());
+		    	client1.setVisible(false);
+		    	clientList1.setVisible(false);
+		    	
+		    	exitOrderScreen(event);
+			}
+			else if (clientsQuantity == 3) {
+				//client 1
+		    	clientCashier1.setVisible(true);
+		    	listClientCashier1.setVisible(true);
+		    	listClientCashier1.setText(clients[0].toStringGames2());
+		    	client1.setVisible(false);
+		    	clientList1.setVisible(false);
+		    	
+				//client 2
+		    	clientCashier2.setVisible(true);
+		    	listClientCashier2.setVisible(true);
+		    	listClientCashier2.setText(clients[1].toStringGames2());
+		    	client2.setVisible(false);
+		    	clientList2.setVisible(false);
+		    	
+				//client 3
+		    	clientCashier3.setVisible(true);
+		    	listClientCashier3.setVisible(true);
+		    	listClientCashier3.setText(clients[2].toStringGames2());
+		    	client2.setVisible(false);
+		    	clientList2.setVisible(false);
+		    	
+		    	exitOrderScreen(event);
+			}
+			else if (clientsQuantity == 4) {
+				//client 1
+		    	clientCashier1.setVisible(true);
+		    	listClientCashier1.setVisible(true);
+		    	listClientCashier1.setText(clients[0].toStringGames2());
+		    	client1.setVisible(false);
+		    	clientList1.setVisible(false);
+		    	
+				//client 2
+		    	clientCashier2.setVisible(true);
+		    	listClientCashier2.setVisible(true);
+		    	listClientCashier2.setText(clients[1].toStringGames2());
+		    	client2.setVisible(false);
+		    	clientList2.setVisible(false);
+		    	
+				//client 3
+		    	clientCashier3.setVisible(true);
+		    	listClientCashier3.setVisible(true);
+		    	listClientCashier3.setText(clients[2].toStringGames2());
+		    	client2.setVisible(false);
+		    	clientList2.setVisible(false);
+		    	
+				//client 4
+		    	clientCashier1.setVisible(true);
+		    	listClientCashier1.setVisible(true);
+		    	listClientCashier1.setText(clients[3].toStringGames2());
+		    	client4.setVisible(false);
+		    	clientList4.setVisible(false);
+		    	
+		    	exitOrderScreen(event);
+			}
+			else if (clientsQuantity == 5) {
+				
+				//client 1
+		    	clientCashier1.setVisible(true);
+		    	listClientCashier1.setVisible(true);
+		    	listClientCashier1.setText(clients[0].toStringGames2());
+		    	client1.setVisible(false);
+		    	clientList1.setVisible(false);
+		    	
+				//client 2
+		    	clientCashier2.setVisible(true);
+		    	listClientCashier2.setVisible(true);
+		    	listClientCashier2.setText(clients[1].toStringGames2());
+		    	client2.setVisible(false);
+		    	clientList2.setVisible(false);
+		    	
+				//client 3
+		    	clientCashier3.setVisible(true);
+		    	listClientCashier3.setVisible(true);
+		    	listClientCashier3.setText(clients[2].toStringGames2());
+		    	client2.setVisible(false);
+		    	clientList2.setVisible(false);
+		    	
+				//client 4
+		    	clientCashier1.setVisible(true);
+		    	listClientCashier1.setVisible(true);
+		    	listClientCashier1.setText(clients[3].toStringGames2());
+		    	client4.setVisible(false);
+		    	clientList4.setVisible(false);
+
+				//client 5
+		    	clientCashier2.setVisible(true);
+		    	listClientCashier2.setVisible(true);
+		    	listClientCashier2.setText(clients[4].toStringGames2());
+		    	client5.setVisible(false);
+		    	clientList5.setVisible(false);
+		    	
+		    	exitOrderScreen(event);
+		    	
+		    	clientCashier1.setVisible(false);
+		    	listClientCashier1.setVisible(false);
+			}
+			break;
+			
+		default:
+			break;
+		}
+
+	}
+	//-------------------------------------------------------------------------------------------------------------
+	
+	//--------------------------------------ExitOrderScreen.fxml---------------------------------------------------
+	
+    @FXML
+    private Label total1;
+    
+    @FXML
+    private Label total2;
+    
+    @FXML
+    private Label total3;
+    
+    @FXML
+    private Label total4;
+    
+    @FXML
+    private Label total5;
+	@FXML
+	public void exitOrderScreen(ActionEvent event) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ExitOrderScreen.fxml"));
+		fxmlLoader.setController(this);  
+		Parent loginScreen = fxmlLoader.load();
+		mainPane.getChildren().clear();
+    	mainPane.setTop(loginScreen);
+    	
+    	for(int i = clients.length; i>0; i--) {
+			for(int j = 0; j<i-1; j++) {
+				if(clients[j].getGamesQuantity() > clients[j+1].getGamesQuantity()) {
+					Client temp = clients[j+1];
+					clients[j+1] = clients[j];
+					clients[j] = temp;
+				}
+			}
+		}
+    	
+    	if(cashiersQuantity == 1) {
+    		switch (clientsQuantity) {
+    		case 1:
+    				clientList1.setText(clients[0].toStringGames());
+    				client2.setVisible(false);
+    				clientList2.setVisible(false);
+    				client3.setVisible(false);
+    				clientList3.setVisible(false);
+    				client4.setVisible(false);
+    				clientList4.setVisible(false);
+    				client5.setVisible(false);
+    				clientList5.setVisible(false);
+    				clientID1.setText(Integer.toString(clients[0].getID()));
+    				total1.setText("$"+clients[0].getToPay());
+    			break;
+    		case 2:
+    				clientList1.setText(clients[0].toStringGames());
+    				clientList2.setText(clients[1].toStringGames());
+    				client3.setVisible(false);
+    				clientList3.setVisible(false);
+    				client4.setVisible(false);
+    				clientList4.setVisible(false);
+    				client5.setVisible(false);
+    				clientList5.setVisible(false);
+    				clientID1.setText(Integer.toString(clients[0].getID()));
+    				clientID2.setText(Integer.toString(clients[1].getID()));
+    				total1.setText("$"+clients[0].getToPay());
+    				total2.setText("$"+clients[1].getToPay());
+    			break;
+    		case 3:
+    				clientList1.setText(clients[0].toStringGames());
+    				clientList2.setText(clients[1].toStringGames());
+    				clientList3.setText(clients[2].toStringGames());
+    				client4.setVisible(false);
+    				clientList4.setVisible(false);
+    				client5.setVisible(false);
+    				clientList5.setVisible(false);
+    				clientID1.setText(Integer.toString(clients[0].getID()));
+    				clientID2.setText(Integer.toString(clients[1].getID()));
+    				clientID3.setText(Integer.toString(clients[2].getID()));
+    				total1.setText("$"+clients[0].getToPay());
+    				total2.setText("$"+clients[1].getToPay());
+    				total3.setText("$"+clients[2].getToPay());
+    			break;
+    		case 4:
+    				clientList1.setText(clients[0].toStringGames());
+    				clientList2.setText(clients[1].toStringGames());
+    				clientList3.setText(clients[2].toStringGames());
+    				clientList4.setText(clients[3].toStringGames());
+    				client5.setVisible(false);
+    				clientList5.setVisible(false);
+    				clientID1.setText(Integer.toString(clients[0].getID()));
+    				clientID2.setText(Integer.toString(clients[1].getID()));
+    				clientID3.setText(Integer.toString(clients[2].getID()));
+    				clientID4.setText(Integer.toString(clients[3].getID()));
+    				total1.setText("$"+clients[0].getToPay());
+    				total2.setText("$"+clients[1].getToPay());
+    				total3.setText("$"+clients[2].getToPay());
+    				total4.setText("$"+clients[3].getToPay());
+    			break;
+    		case 5:
+    				clientList1.setText(clients[0].toStringGames());
+    				clientList2.setText(clients[1].toStringGames());
+    				clientList3.setText(clients[2].toStringGames());
+    				clientList4.setText(clients[3].toStringGames());
+    				clientList5.setText(clients[4].toStringGames());
+    				clientID1.setText(Integer.toString(clients[0].getID()));
+    				clientID2.setText(Integer.toString(clients[1].getID()));
+    				clientID3.setText(Integer.toString(clients[2].getID()));
+    				clientID4.setText(Integer.toString(clients[3].getID()));
+    				clientID5.setText(Integer.toString(clients[4].getID()));
+    				total1.setText("$"+clients[0].getToPay());
+    				total2.setText("$"+clients[1].getToPay());
+    				total3.setText("$"+clients[2].getToPay());
+    				total4.setText("$"+clients[3].getToPay());
+    				total5.setText("$"+clients[4].getToPay());
+    			break;		
+    		default:
+    		}
+    	}
+    	else if(cashiersQuantity == 2) {
+    		clientsActions(clientsQuantity, clientsGames, 3);
+    		switch (clientsQuantity) {
+    		case 1:
+    				clientList1.setText(clients[0].toStringGames());
+    				client2.setVisible(false);
+    				clientList2.setVisible(false);
+    				client3.setVisible(false);
+    				clientList3.setVisible(false);
+    				client4.setVisible(false);
+    				clientList4.setVisible(false);
+    				client5.setVisible(false);
+    				clientList5.setVisible(false);
+    				clientID1.setText(Integer.toString(clients[0].getID()));
+    				total1.setText("$"+clients[0].getToPay());
+    			break;
+    		case 2:
+    				clientList1.setText(clients[0].toStringGames());
+    				clientList2.setText(clients[1].toStringGames());
+    				client3.setVisible(false);
+    				clientList3.setVisible(false);
+    				client4.setVisible(false);
+    				clientList4.setVisible(false);
+    				client5.setVisible(false);
+    				clientList5.setVisible(false);
+    				clientID1.setText(Integer.toString(clients[0].getID()));
+    				clientID2.setText(Integer.toString(clients[1].getID()));
+    				total1.setText("$"+clients[0].getToPay());
+    				total2.setText("$"+clients[1].getToPay());
+    			break;
+    		case 3:
+    				clientList1.setText(clients[0].toStringGames());
+    				clientList2.setText(clients[1].toStringGames());
+    				clientList3.setText(clients[2].toStringGames());
+    				client4.setVisible(false);
+    				clientList4.setVisible(false);
+    				client5.setVisible(false);
+    				clientList5.setVisible(false);
+    				clientID1.setText(Integer.toString(clients[0].getID()));
+    				clientID2.setText(Integer.toString(clients[1].getID()));
+    				clientID3.setText(Integer.toString(clients[2].getID()));
+    				total1.setText("$"+clients[0].getToPay());
+    				total2.setText("$"+clients[1].getToPay());
+    				total3.setText("$"+clients[2].getToPay());
+    			break;
+    		case 4:
+    				clientList1.setText(clients[0].toStringGames());
+    				clientList2.setText(clients[1].toStringGames());
+    				clientList3.setText(clients[2].toStringGames());
+    				clientList4.setText(clients[3].toStringGames());
+    				client5.setVisible(false);
+    				clientList5.setVisible(false);
+    				clientID1.setText(Integer.toString(clients[0].getID()));
+    				clientID2.setText(Integer.toString(clients[1].getID()));
+    				clientID3.setText(Integer.toString(clients[2].getID()));
+    				clientID4.setText(Integer.toString(clients[3].getID()));
+    				total1.setText("$"+clients[0].getToPay());
+    				total2.setText("$"+clients[1].getToPay());
+    				total3.setText("$"+clients[2].getToPay());
+    				total4.setText("$"+clients[3].getToPay());
+    			break;
+    		case 5:
+    				clientList1.setText(clients[0].toStringGames());
+    				clientList2.setText(clients[1].toStringGames());
+    				clientList3.setText(clients[2].toStringGames());
+    				clientList4.setText(clients[3].toStringGames());
+    				clientList5.setText(clients[4].toStringGames());
+    				clientID1.setText(Integer.toString(clients[0].getID()));
+    				clientID2.setText(Integer.toString(clients[1].getID()));
+    				clientID3.setText(Integer.toString(clients[2].getID()));
+    				clientID4.setText(Integer.toString(clients[3].getID()));
+    				clientID5.setText(Integer.toString(clients[4].getID()));
+    				total1.setText("$"+clients[0].getToPay());
+    				total2.setText("$"+clients[1].getToPay());
+    				total3.setText("$"+clients[2].getToPay());
+    				total4.setText("$"+clients[3].getToPay());
+    				total5.setText("$"+clients[4].getToPay());
+    			break;		
+    		default:
+    		}
+    	}
+    	else if (cashiersQuantity == 3) {
+			clientsActions(clientsQuantity, clientsGames, 3);
+    		switch (clientsQuantity) {
+    		case 1:
+    				clientList1.setText(clients[0].toStringGames());
+    				client2.setVisible(false);
+    				clientList2.setVisible(false);
+    				client3.setVisible(false);
+    				clientList3.setVisible(false);
+    				client4.setVisible(false);
+    				clientList4.setVisible(false);
+    				client5.setVisible(false);
+    				clientList5.setVisible(false);
+    				clientID1.setText(Integer.toString(clients[0].getID()));
+    				total1.setText("$"+clients[0].getToPay());
+    			break;
+    		case 2:
+    				clientList1.setText(clients[0].toStringGames());
+    				clientList2.setText(clients[1].toStringGames());
+    				client3.setVisible(false);
+    				clientList3.setVisible(false);
+    				client4.setVisible(false);
+    				clientList4.setVisible(false);
+    				client5.setVisible(false);
+    				clientList5.setVisible(false);
+    				clientID1.setText(Integer.toString(clients[0].getID()));
+    				clientID2.setText(Integer.toString(clients[1].getID()));
+    				total1.setText("$"+clients[0].getToPay());
+    				total2.setText("$"+clients[1].getToPay());
+    			break;
+    		case 3:
+    				clientList1.setText(clients[0].toStringGames());
+    				clientList2.setText(clients[1].toStringGames());
+    				clientList3.setText(clients[2].toStringGames());
+    				client4.setVisible(false);
+    				clientList4.setVisible(false);
+    				client5.setVisible(false);
+    				clientList5.setVisible(false);
+    				clientID1.setText(Integer.toString(clients[0].getID()));
+    				clientID2.setText(Integer.toString(clients[1].getID()));
+    				clientID3.setText(Integer.toString(clients[2].getID()));
+    				total1.setText("$"+clients[0].getToPay());
+    				total2.setText("$"+clients[1].getToPay());
+    				total3.setText("$"+clients[2].getToPay());
+    			break;
+    		case 4:
+    				clientList1.setText(clients[0].toStringGames());
+    				clientList2.setText(clients[1].toStringGames());
+    				clientList3.setText(clients[2].toStringGames());
+    				clientList4.setText(clients[3].toStringGames());
+    				client5.setVisible(false);
+    				clientList5.setVisible(false);
+    				clientID1.setText(Integer.toString(clients[0].getID()));
+    				clientID2.setText(Integer.toString(clients[1].getID()));
+    				clientID3.setText(Integer.toString(clients[2].getID()));
+    				clientID4.setText(Integer.toString(clients[3].getID()));
+    				total1.setText("$"+clients[0].getToPay());
+    				total2.setText("$"+clients[1].getToPay());
+    				total3.setText("$"+clients[2].getToPay());
+    				total4.setText("$"+clients[3].getToPay());
+    			break;
+    		case 5:
+    				clientList1.setText(clients[0].toStringGames());
+    				clientList2.setText(clients[1].toStringGames());
+    				clientList3.setText(clients[2].toStringGames());
+    				clientList4.setText(clients[3].toStringGames());
+    				clientList5.setText(clients[4].toStringGames());
+    				clientID1.setText(Integer.toString(clients[0].getID()));
+    				clientID2.setText(Integer.toString(clients[1].getID()));
+    				clientID3.setText(Integer.toString(clients[2].getID()));
+    				clientID4.setText(Integer.toString(clients[3].getID()));
+    				clientID5.setText(Integer.toString(clients[4].getID()));
+    				total1.setText("$"+clients[0].getToPay());
+    				total2.setText("$"+clients[1].getToPay());
+    				total3.setText("$"+clients[2].getToPay());
+    				total4.setText("$"+clients[3].getToPay());
+    				total5.setText("$"+clients[4].getToPay());
+    			break;		
+    		default:
+    		}
+//    		for (Client client : clients) {
+//				System.out.println(client.getID());
+//			}
     	}
 	}
 	//-------------------------------------------------------------------------------------------------------------
