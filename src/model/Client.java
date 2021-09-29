@@ -37,8 +37,8 @@ public class Client {
 		return time;
 	}
 	
-	public void increaseTime() {
-		time++;
+	public void increaseTime(int gamesQuantity) {
+		time += gamesQuantity;
 	}
 	
 	public void setGamesToBuy(VideoGame[] gtb) {
@@ -70,6 +70,26 @@ public class Client {
 			if(i == gamesToBuy.length-1) {
 				str += ""+gamesToBuy[i].getKey();
 			}else str += ""+gamesToBuy[i].getKey()+" ";
+		}
+		return str;
+	}
+	
+	public String toStringGames() {
+		String str = "";
+		for(int i = 0; i<gamesToBuy.length; i++) {
+			if(i == gamesToBuy.length-1) {
+				str += ""+gamesToBuy[i].getKey();
+			}else str += ""+gamesToBuy[i].getKey()+"\n";
+		}
+		return str;
+	}
+	
+	public String toStringGames2() {
+		String str = "";
+		for(int i = gamesToBuy.length-1; i>=0 ; i--) {
+			if(i == 0) {
+				str += ""+gamesToBuy[i].getKey();
+			}else str += ""+gamesToBuy[i].getKey()+"\n";
 		}
 		return str;
 	}

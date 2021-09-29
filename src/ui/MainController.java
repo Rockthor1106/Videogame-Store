@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
@@ -56,6 +57,9 @@ public class MainController {
 
     private Client[] clients;
     
+    private int clientsQuantity;
+    private String[] clientsGames;
+    
     @FXML
     public void process(ActionEvent event) throws IOException {
     	if (cashiersNumber.getText().equals("") || racksNumber.getText().equals("") || clientsNumber.getText().equals("") || gamesToBuy.getText().equals("")) {
@@ -64,29 +68,33 @@ public class MainController {
     	else {
 			int cashiersQuantity = Integer.parseInt(cashiersNumber.getText());
 			int racksQuantity = Integer.parseInt(racksNumber.getText());
-			int clientsQuantity = Integer.parseInt(clientsNumber.getText());
+			clientsQuantity = Integer.parseInt(clientsNumber.getText());
 			
 			videoGameStore.setCashiers(cashiersQuantity);
 			videoGameStore.setRacksNumber(racksQuantity);
 			videoGameStore.setClients(clientsQuantity);
 			clients = new Client[clientsQuantity];
-			String[] clientsGames = gamesToBuy.getText().split("\n");
-			
-			clientsActions(clientsQuantity, clientsGames);
+			clientsGames = gamesToBuy.getText().split("\n");
 			
 			//display next screen
 			chooseSortingScreen(event);
 		}
     }
     
-    private void clientsActions(int clientsQuantity, String[] clientsGames) {
+    private void clientsActions(int clientsQuantity, String[] clientsGames, boolean phase) { //phase = true, after phase 2 and phase = false, after phase 3
     	for(int i = 0; i<clientsQuantity; i++) {
 			String[] strs = clientsGames[i].split(" "); 
 			int[] games = new int[strs.length-1];
 			for(int j = 1; j<= games.length; j++) {
 				games[j-1] = Integer.parseInt(strs[j]);
 			}
-			clients[i] = new Client(Integer.parseInt(strs[0]), games, i+1+(games.length));
+			if(phase == true) {
+				clients[i] = new Client(Integer.parseInt(strs[0]), games, i+1);
+			}
+			else {
+				clients[i].increaseTime(clients[i].getGamesQuantity());
+			}
+			
 		}
     	//bubbleSort
     	for(int i = clients.length; i>0; i--) {
@@ -98,26 +106,7 @@ public class MainController {
 				}
 			}
 		}
-    	Queue<Client> st = new LinkedList<>();
-    	for(int i = 0; i<clients.length; i++) {
-    		clients[i].setGamesToBuy(videoGameStore.orderList(clients[i].getWishListCode(), true));
-    		st.add(clients[i]);
-    	}
-    	while(!st.isEmpty()) {
-    		for(int i = 0; i<clientsQuantity; i++) {
-    			if(i<3 && !st.isEmpty()) {
-    				Client temp = st.remove();
-    				temp.decreaseGames();
-    				if(temp.getGamesQuantity() > 0) {
-    					st.add(temp);
-    				}else {
-    					System.out.println(temp.toString());
-    				}
-    			}else if(!st.isEmpty()) {
-    				st.add(st.remove());
-    			}
-    		}
-    	}
+
     }
 
 	@FXML
@@ -151,23 +140,181 @@ public class MainController {
 	
     @FXML
     void sortingOne(ActionEvent event) throws IOException {
-    	OrderToPickUpGamesScreen(event);
+    	clientsActions(clientsQuantity, clientsGames, true);
+    	for(int i = 0; i<clients.length; i++) {
+    		clients[i].setGamesToBuy(videoGameStore.orderList(clients[i].getWishListCode(), true));
+    	}  	
+    	afterSectionTwoScreen(event);
     }
-
+    
     @FXML
     void sortingTwo(ActionEvent event) throws IOException {
-    	OrderToPickUpGamesScreen(event);
+    	
+    	afterSectionTwoScreen(event);
     }
+
+
 	//-------------------------------------------------------------------------------------------------------------
     
     //--------------------------------OrderToPickUpGamesScreen.fxml------------------------------------------------
+
+    @FXML
+    private TextArea clientList1;
+
+    @FXML
+    private TextArea clientList2;
+
+    @FXML
+    private TextArea clientList3;
+
+    @FXML
+    private TextArea clientList4;
+
+    @FXML
+    private TextArea clientList5;
+    
+    @FXML
+    private Label section;
+    
 	@FXML
-	void OrderToPickUpGamesScreen(ActionEvent event) throws IOException {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("OrderToPickUpGamesScreen.fxml"));
+	void afterSectionTwoScreen(ActionEvent event) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("afterSectionTwoScreen.fxml"));
+		fxmlLoader.setController(this); 
+		Parent loginScreen = fxmlLoader.load();
+		mainPane.getChildren().clear();
+    	mainPane.setTop(loginScreen);
+		
+		switch (clientsQuantity) {
+		case 1:
+				clientList1.setText(clients[0].toStringGames());
+			break;
+		case 2:
+				clientList1.setText(clients[0].toStringGames());
+				clientList2.setText(clients[1].toStringGames());
+			break;
+		case 3:
+				clientList1.setText(clients[0].toStringGames());
+				clientList2.setText(clients[1].toStringGames());
+				clientList3.setText(clients[2].toStringGames());
+			break;
+		case 4:
+				clientList1.setText(clients[0].toStringGames());
+				clientList2.setText(clients[1].toStringGames());
+				clientList3.setText(clients[2].toStringGames());
+				clientList4.setText(clients[3].toStringGames());
+			break;
+		case 5:
+				clientList1.setText(clients[0].toStringGames());
+				clientList2.setText(clients[1].toStringGames());
+				clientList3.setText(clients[2].toStringGames());
+				clientList4.setText(clients[3].toStringGames());
+				clientList5.setText(clients[4].toStringGames());
+			break;		
+		default:
+			break;
+		}
+	}
+	
+	@FXML
+	void afterSectionThreeScreen(ActionEvent event) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("afterSectionThreeScreen.fxml"));
+		fxmlLoader.setController(this); 
+		Parent loginScreen = fxmlLoader.load();
+		mainPane.getChildren().clear();
+    	mainPane.setTop(loginScreen);
+		
+		switch (clientsQuantity) {
+		case 1:
+				clientList1.setText(clients[0].toStringGames2());
+			break;
+		case 2:
+				clientList1.setText(clients[0].toStringGames2());
+				clientList2.setText(clients[1].toStringGames2());
+			break;
+		case 3:
+				clientList1.setText(clients[0].toStringGames2());
+				clientList2.setText(clients[1].toStringGames2());
+				clientList3.setText(clients[2].toStringGames2());
+			break;
+		case 4:
+				clientList1.setText(clients[0].toStringGames2());
+				clientList2.setText(clients[1].toStringGames2());
+				clientList3.setText(clients[2].toStringGames2());
+				clientList4.setText(clients[3].toStringGames2());
+			break;
+		case 5:
+				clientList1.setText(clients[0].toStringGames2());
+				clientList2.setText(clients[1].toStringGames2());
+				clientList3.setText(clients[2].toStringGames2());
+				clientList4.setText(clients[3].toStringGames2());
+				clientList5.setText(clients[4].toStringGames2());
+			break;		
+		default:
+			break;
+		}
+	}
+	
+	public void orderGamesToPickUp(int clientsQuantity, int cashiersQuantity) {
+    	Queue<Client> st = new LinkedList<>();
+    	for(int i = 0; i<clients.length; i++) {
+    		clients[i].setGamesToBuy(videoGameStore.orderList(clients[i].getWishListCode(), true));
+    		st.add(clients[i]);
+    	}
+    	while(!st.isEmpty()) {
+    		for(int i = 0; i<clientsQuantity; i++) {
+    			if(i<cashiersQuantity && !st.isEmpty()) {
+    				Client temp = st.remove();
+    				temp.decreaseGames();
+    				if(temp.getGamesQuantity() > 0) {
+    					st.add(temp);
+    				}else {
+    					System.out.println(temp.toString());
+    				}
+    			}else if(!st.isEmpty()) {
+    				st.add(st.remove());
+    			}
+    		}
+    	}
+	}
+    //-------------------------------------------------------------------------------------------------------------
+	
+	//--------------------------------------Payment Screen---------------------------------------------------------
+	@FXML
+	void paymentScreen(ActionEvent event) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("paymentScreen.fxml"));
 		fxmlLoader.setController(this);    	
 		Parent loginScreen = fxmlLoader.load();
 		mainPane.getChildren().clear();
     	mainPane.setTop(loginScreen);
+    	
+    	switch (clientsQuantity) {
+		case 1:
+				clientList1.setText(clients[0].toStringGames2());
+			break;
+		case 2:
+				clientList1.setText(clients[0].toStringGames2());
+				clientList2.setText(clients[1].toStringGames2());
+			break;
+		case 3:
+				clientList1.setText(clients[0].toStringGames2());
+				clientList2.setText(clients[1].toStringGames2());
+				clientList3.setText(clients[2].toStringGames2());
+			break;
+		case 4:
+				clientList1.setText(clients[0].toStringGames2());
+				clientList2.setText(clients[1].toStringGames2());
+				clientList3.setText(clients[2].toStringGames2());
+				clientList4.setText(clients[3].toStringGames2());
+			break;
+		case 5:
+				clientList1.setText(clients[0].toStringGames2());
+				clientList2.setText(clients[1].toStringGames2());
+				clientList3.setText(clients[2].toStringGames2());
+				clientList4.setText(clients[3].toStringGames2());
+				clientList5.setText(clients[4].toStringGames2());
+			break;		
+		default:
+    	}
 	}
-    //-------------------------------------------------------------------------------------------------------------
+	//-------------------------------------------------------------------------------------------------------------
 }
