@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="627.0" prefWidth="1044.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <BorderPane prefHeight="157.0" prefWidth="1044.0" BorderPane.alignment="CENTER">
+         <center>
+            <Label fx:id="section" text="After Section Two" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </center></BorderPane>
+   </top>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="224.0" prefWidth="1044.0">
+               <children>
+                  <Pane prefHeight="150.0" prefWidth="98.0" />
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/client.png" />
+                     </image>
+                  </ImageView>
+                  <TextArea fx:id="clientList1" editable="false" prefHeight="150.0" prefWidth="133.0">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </TextArea>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/client.png" />
+                     </image>
+                  </ImageView>
+                  <TextArea fx:id="clientList2" prefHeight="150.0" prefWidth="133.0" wrapText="true">
+                     <font>
+                        <Font size="16.0" />
+                     </font></TextArea>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/client.png" />
+                     </image>
+                  </ImageView>
+                  <TextArea fx:id="clientList3" editable="false" prefHeight="150.0" prefWidth="133.0">
+                     <font>
+                        <Font size="16.0" />
+                     </font></TextArea>
+               </children>
+            </HBox>
+            <Pane prefHeight="219.0" prefWidth="1044.0" />
+            <HBox prefHeight="150.0" prefWidth="1044.0">
+               <children>
+                  <Pane prefHeight="150.0" prefWidth="237.0" />
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/client.png" />
+                     </image>
+                  </ImageView>
+                  <TextArea fx:id="clientList4" editable="false" prefHeight="200.0" prefWidth="133.0">
+                     <font>
+                        <Font size="16.0" />
+                     </font></TextArea>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/client.png" />
+                     </image>
+                  </ImageView>
+                  <TextArea fx:id="clientList5" editable="false" prefHeight="200.0" prefWidth="133.0">
+                     <font>
+                        <Font size="16.0" />
+                     </font></TextArea>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+   <bottom>
+      <BorderPane prefHeight="145.0" prefWidth="1044.0" BorderPane.alignment="CENTER">
+         <center>
+            <Button mnemonicParsing="false" onAction="#afterSectionThreeScreen" text="Next" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+         </center>
+      </BorderPane>
+   </bottom>
+</BorderPane>

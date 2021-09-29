@@ -24,4 +24,5 @@ public class VideoGame extends HashItem<Integer, Integer>{
 	public char getRack() {
 		return rack;
 	}
+	
 }
