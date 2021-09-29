@@ -724,7 +724,59 @@ public class MainController {
 				}
 			}
 		}
+    	
     	if(cashiersQuantity == 1) {
+    		switch (clientsQuantity) {
+    		case 1:
+    				clientList1.setText(clients[0].toStringGames());
+    				client2.setVisible(false);
+    				clientList2.setVisible(false);
+    				client3.setVisible(false);
+    				clientList3.setVisible(false);
+    				client4.setVisible(false);
+    				clientList4.setVisible(false);
+    				client5.setVisible(false);
+    				clientList5.setVisible(false);
+    			break;
+    		case 2:
+    				clientList1.setText(clients[0].toStringGames());
+    				clientList2.setText(clients[1].toStringGames());
+    				client3.setVisible(false);
+    				clientList3.setVisible(false);
+    				client4.setVisible(false);
+    				clientList4.setVisible(false);
+    				client5.setVisible(false);
+    				clientList5.setVisible(false);
+    			break;
+    		case 3:
+    				clientList1.setText(clients[0].toStringGames());
+    				clientList2.setText(clients[1].toStringGames());
+    				clientList3.setText(clients[2].toStringGames());
+    				client4.setVisible(false);
+    				clientList4.setVisible(false);
+    				client5.setVisible(false);
+    				clientList5.setVisible(false);
+    			break;
+    		case 4:
+    				clientList1.setText(clients[0].toStringGames());
+    				clientList2.setText(clients[1].toStringGames());
+    				clientList3.setText(clients[2].toStringGames());
+    				clientList4.setText(clients[3].toStringGames());
+    				client5.setVisible(false);
+    				clientList5.setVisible(false);
+    			break;
+    		case 5:
+    				clientList1.setText(clients[0].toStringGames());
+    				clientList2.setText(clients[1].toStringGames());
+    				clientList3.setText(clients[2].toStringGames());
+    				clientList4.setText(clients[3].toStringGames());
+    				clientList5.setText(clients[4].toStringGames());
+    			break;		
+    		default:
+    		}
+    	}
+    	else if(cashiersQuantity == 2) {
+    		clientsActions(clientsQuantity, clientsGames, 3);
     		switch (clientsQuantity) {
     		case 1:
     				clientList1.setText(clients[0].toStringGames());
