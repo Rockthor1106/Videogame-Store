@@ -83,18 +83,21 @@ public class MainController {
 		}
     }
     
-    private void clientsActions(int clientsQuantity, String[] clientsGames, boolean phase) { //phase = true, after phase 2 and phase = false, after phase 3
+    private void clientsActions(int clientsQuantity, String[] clientsGames, int phase) { 
     	for(int i = 0; i<clientsQuantity; i++) {
 			String[] strs = clientsGames[i].split(" "); 
 			int[] games = new int[strs.length-1];
 			for(int j = 1; j<= games.length; j++) {
 				games[j-1] = Integer.parseInt(strs[j]);
 			}
-			if(phase == true) {
+			if(phase == 1) { //after phase two
 				clients[i] = new Client(Integer.parseInt(strs[0]), games, i+1);
 			}
-			else {
+			else if(phase == 2) { //after phase three
 				clients[i].increaseTime(clients[i].getGamesQuantity());
+			}
+			else if (phase == 3) { //payment phase
+				clients[i].increaseTime((clients[i].getGamesQuantity()+clients[i].getGamesQuantity()));
 			}
 			
 		}
@@ -142,7 +145,7 @@ public class MainController {
 	
     @FXML
     void sortingOne(ActionEvent event) throws IOException {
-    	clientsActions(clientsQuantity, clientsGames, true);
+    	clientsActions(clientsQuantity, clientsGames, 1);
     	for(int i = 0; i<clients.length; i++) {
     		clients[i].setGamesToBuy(videoGameStore.orderList(clients[i].getWishListCode(), true));
     	}  	
@@ -712,53 +715,118 @@ public class MainController {
 		mainPane.getChildren().clear();
     	mainPane.setTop(loginScreen);
     	
-    	switch (clientsQuantity) {
-		case 1:
-				clientList1.setText(clients[0].toStringGames());
-				client2.setVisible(false);
-				clientList2.setVisible(false);
-				client3.setVisible(false);
-				clientList3.setVisible(false);
-				client4.setVisible(false);
-				clientList4.setVisible(false);
-				client5.setVisible(false);
-				clientList5.setVisible(false);
-			break;
-		case 2:
-				clientList1.setText(clients[0].toStringGames());
-				clientList2.setText(clients[1].toStringGames());
-				client3.setVisible(false);
-				clientList3.setVisible(false);
-				client4.setVisible(false);
-				clientList4.setVisible(false);
-				client5.setVisible(false);
-				clientList5.setVisible(false);
-			break;
-		case 3:
-				clientList1.setText(clients[0].toStringGames());
-				clientList2.setText(clients[1].toStringGames());
-				clientList3.setText(clients[2].toStringGames());
-				client4.setVisible(false);
-				clientList4.setVisible(false);
-				client5.setVisible(false);
-				clientList5.setVisible(false);
-			break;
-		case 4:
-				clientList1.setText(clients[0].toStringGames());
-				clientList2.setText(clients[1].toStringGames());
-				clientList3.setText(clients[2].toStringGames());
-				clientList4.setText(clients[3].toStringGames());
-				client5.setVisible(false);
-				clientList5.setVisible(false);
-			break;
-		case 5:
-				clientList1.setText(clients[0].toStringGames());
-				clientList2.setText(clients[1].toStringGames());
-				clientList3.setText(clients[2].toStringGames());
-				clientList4.setText(clients[3].toStringGames());
-				clientList5.setText(clients[4].toStringGames());
-			break;		
-		default:
+    	for(int i = clients.length; i>0; i--) {
+			for(int j = 0; j<i-1; j++) {
+				if(clients[j].getGamesQuantity() > clients[j+1].getGamesQuantity()) {
+					Client temp = clients[j+1];
+					clients[j+1] = clients[j];
+					clients[j] = temp;
+				}
+			}
+		}
+    	if(cashiersQuantity == 1) {
+    		switch (clientsQuantity) {
+    		case 1:
+    				clientList1.setText(clients[0].toStringGames());
+    				client2.setVisible(false);
+    				clientList2.setVisible(false);
+    				client3.setVisible(false);
+    				clientList3.setVisible(false);
+    				client4.setVisible(false);
+    				clientList4.setVisible(false);
+    				client5.setVisible(false);
+    				clientList5.setVisible(false);
+    			break;
+    		case 2:
+    				clientList1.setText(clients[0].toStringGames());
+    				clientList2.setText(clients[1].toStringGames());
+    				client3.setVisible(false);
+    				clientList3.setVisible(false);
+    				client4.setVisible(false);
+    				clientList4.setVisible(false);
+    				client5.setVisible(false);
+    				clientList5.setVisible(false);
+    			break;
+    		case 3:
+    				clientList1.setText(clients[0].toStringGames());
+    				clientList2.setText(clients[1].toStringGames());
+    				clientList3.setText(clients[2].toStringGames());
+    				client4.setVisible(false);
+    				clientList4.setVisible(false);
+    				client5.setVisible(false);
+    				clientList5.setVisible(false);
+    			break;
+    		case 4:
+    				clientList1.setText(clients[0].toStringGames());
+    				clientList2.setText(clients[1].toStringGames());
+    				clientList3.setText(clients[2].toStringGames());
+    				clientList4.setText(clients[3].toStringGames());
+    				client5.setVisible(false);
+    				clientList5.setVisible(false);
+    			break;
+    		case 5:
+    				clientList1.setText(clients[0].toStringGames());
+    				clientList2.setText(clients[1].toStringGames());
+    				clientList3.setText(clients[2].toStringGames());
+    				clientList4.setText(clients[3].toStringGames());
+    				clientList5.setText(clients[4].toStringGames());
+    			break;		
+    		default:
+    		}
+    	}
+    	else if (cashiersQuantity == 3) {
+			clientsActions(clientsQuantity, clientsGames, 3);
+    		switch (clientsQuantity) {
+    		case 1:
+    				clientList1.setText(clients[0].toStringGames());
+    				client2.setVisible(false);
+    				clientList2.setVisible(false);
+    				client3.setVisible(false);
+    				clientList3.setVisible(false);
+    				client4.setVisible(false);
+    				clientList4.setVisible(false);
+    				client5.setVisible(false);
+    				clientList5.setVisible(false);
+    			break;
+    		case 2:
+    				clientList1.setText(clients[0].toStringGames());
+    				clientList2.setText(clients[1].toStringGames());
+    				client3.setVisible(false);
+    				clientList3.setVisible(false);
+    				client4.setVisible(false);
+    				clientList4.setVisible(false);
+    				client5.setVisible(false);
+    				clientList5.setVisible(false);
+    			break;
+    		case 3:
+    				clientList1.setText(clients[0].toStringGames());
+    				clientList2.setText(clients[1].toStringGames());
+    				clientList3.setText(clients[2].toStringGames());
+    				client4.setVisible(false);
+    				clientList4.setVisible(false);
+    				client5.setVisible(false);
+    				clientList5.setVisible(false);
+    			break;
+    		case 4:
+    				clientList1.setText(clients[0].toStringGames());
+    				clientList2.setText(clients[1].toStringGames());
+    				clientList3.setText(clients[2].toStringGames());
+    				clientList4.setText(clients[3].toStringGames());
+    				client5.setVisible(false);
+    				clientList5.setVisible(false);
+    			break;
+    		case 5:
+    				clientList1.setText(clients[0].toStringGames());
+    				clientList2.setText(clients[1].toStringGames());
+    				clientList3.setText(clients[2].toStringGames());
+    				clientList4.setText(clients[3].toStringGames());
+    				clientList5.setText(clients[4].toStringGames());
+    			break;		
+    		default:
+    		}
+//    		for (Client client : clients) {
+//				System.out.println(client.getID());
+//			}
     	}
 	}
 	//-------------------------------------------------------------------------------------------------------------
