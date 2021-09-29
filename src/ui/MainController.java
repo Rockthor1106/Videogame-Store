@@ -161,7 +161,7 @@ public class MainController {
 
 	//-------------------------------------------------------------------------------------------------------------
     
-    //--------------------------------OrderToPickUpGamesScreen.fxml------------------------------------------------
+    //--------------------------------afterSectionTwo.fxml------------------------------------------------
 
     @FXML
     private TextArea clientList1;
@@ -179,7 +179,20 @@ public class MainController {
     private TextArea clientList5;
     
     @FXML
-    private Label section;
+    private Label clientID1;
+    
+    @FXML
+    private Label clientID2;
+    
+    @FXML
+    private Label clientID3;
+
+    @FXML
+    private Label clientID4;
+    
+    @FXML
+    private Label clientID5;
+    
     
 	@FXML
 	void afterSectionTwoScreen(ActionEvent event) throws IOException {
@@ -200,6 +213,7 @@ public class MainController {
 				clientList4.setVisible(false);
 				client5.setVisible(false);
 				clientList5.setVisible(false);
+				clientID1.setText(Integer.toString(clients[0].getID()));
 			break;
 		case 2:
 				clientList1.setText(clients[0].toStringGames());
@@ -210,6 +224,8 @@ public class MainController {
 				clientList4.setVisible(false);
 				client5.setVisible(false);
 				clientList5.setVisible(false);
+				clientID1.setText(Integer.toString(clients[0].getID()));
+				clientID2.setText(Integer.toString(clients[1].getID()));
 			break;
 		case 3:
 				clientList1.setText(clients[0].toStringGames());
@@ -219,6 +235,9 @@ public class MainController {
 				clientList4.setVisible(false);
 				client5.setVisible(false);
 				clientList5.setVisible(false);
+				clientID1.setText(Integer.toString(clients[0].getID()));
+				clientID2.setText(Integer.toString(clients[1].getID()));
+				clientID3.setText(Integer.toString(clients[2].getID()));
 			break;
 		case 4:
 				clientList1.setText(clients[0].toStringGames());
@@ -227,6 +246,10 @@ public class MainController {
 				clientList4.setText(clients[3].toStringGames());
 				client5.setVisible(false);
 				clientList5.setVisible(false);
+				clientID1.setText(Integer.toString(clients[0].getID()));
+				clientID2.setText(Integer.toString(clients[1].getID()));
+				clientID3.setText(Integer.toString(clients[2].getID()));
+				clientID4.setText(Integer.toString(clients[3].getID()));
 			break;
 		case 5:
 				clientList1.setText(clients[0].toStringGames());
@@ -234,6 +257,11 @@ public class MainController {
 				clientList3.setText(clients[2].toStringGames());
 				clientList4.setText(clients[3].toStringGames());
 				clientList5.setText(clients[4].toStringGames());
+				clientID1.setText(Integer.toString(clients[0].getID()));
+				clientID2.setText(Integer.toString(clients[1].getID()));
+				clientID3.setText(Integer.toString(clients[2].getID()));
+				clientID4.setText(Integer.toString(clients[3].getID()));
+				clientID5.setText(Integer.toString(clients[4].getID()));
 			break;		
 		default:
 			break;
@@ -259,6 +287,7 @@ public class MainController {
 				clientList4.setVisible(false);
 				client5.setVisible(false);
 				clientList5.setVisible(false);
+				clientID1.setText(Integer.toString(clients[0].getID()));
 			break;
 		case 2:
 				clientList1.setText(clients[0].toStringGames2());
@@ -269,6 +298,8 @@ public class MainController {
 				clientList4.setVisible(false);
 				client5.setVisible(false);
 				clientList5.setVisible(false);
+				clientID1.setText(Integer.toString(clients[0].getID()));
+				clientID2.setText(Integer.toString(clients[1].getID()));
 			break;
 		case 3:
 				clientList1.setText(clients[0].toStringGames2());
@@ -278,6 +309,9 @@ public class MainController {
 				clientList4.setVisible(false);
 				client5.setVisible(false);
 				clientList5.setVisible(false);
+				clientID1.setText(Integer.toString(clients[0].getID()));
+				clientID2.setText(Integer.toString(clients[1].getID()));
+				clientID3.setText(Integer.toString(clients[2].getID()));
 			break;
 		case 4:
 				clientList1.setText(clients[0].toStringGames2());
@@ -286,6 +320,10 @@ public class MainController {
 				clientList4.setText(clients[3].toStringGames2());
 				client5.setVisible(false);
 				clientList5.setVisible(false);
+				clientID1.setText(Integer.toString(clients[0].getID()));
+				clientID2.setText(Integer.toString(clients[1].getID()));
+				clientID3.setText(Integer.toString(clients[2].getID()));
+				clientID4.setText(Integer.toString(clients[3].getID()));
 			break;
 		case 5:
 				clientList1.setText(clients[0].toStringGames2());
@@ -293,6 +331,11 @@ public class MainController {
 				clientList3.setText(clients[2].toStringGames2());
 				clientList4.setText(clients[3].toStringGames2());
 				clientList5.setText(clients[4].toStringGames2());
+				clientID1.setText(Integer.toString(clients[0].getID()));
+				clientID2.setText(Integer.toString(clients[1].getID()));
+				clientID3.setText(Integer.toString(clients[2].getID()));
+				clientID4.setText(Integer.toString(clients[3].getID()));
+				clientID5.setText(Integer.toString(clients[4].getID()));
 			break;		
 		default:
 			break;
@@ -398,6 +441,7 @@ public class MainController {
 				clientList4.setVisible(false);
 				client5.setVisible(false);
 				clientList5.setVisible(false);
+				clientID1.setText(Integer.toString(clients[0].getID()));
 			break;
 		case 2:
 				clientList1.setText(clients[0].toStringGames2());
@@ -408,6 +452,8 @@ public class MainController {
 				clientList4.setVisible(false);
 				client5.setVisible(false);
 				clientList5.setVisible(false);
+				clientID1.setText(Integer.toString(clients[0].getID()));
+				clientID2.setText(Integer.toString(clients[1].getID()));
 			break;
 		case 3:
 				clientList1.setText(clients[0].toStringGames2());
@@ -417,6 +463,9 @@ public class MainController {
 				clientList4.setVisible(false);
 				client5.setVisible(false);
 				clientList5.setVisible(false);
+				clientID1.setText(Integer.toString(clients[0].getID()));
+				clientID2.setText(Integer.toString(clients[1].getID()));
+				clientID3.setText(Integer.toString(clients[2].getID()));
 			break;
 		case 4:
 				clientList1.setText(clients[0].toStringGames2());
@@ -425,6 +474,10 @@ public class MainController {
 				clientList4.setText(clients[3].toStringGames2());
 				client5.setVisible(false);
 				clientList5.setVisible(false);
+				clientID1.setText(Integer.toString(clients[0].getID()));
+				clientID2.setText(Integer.toString(clients[1].getID()));
+				clientID3.setText(Integer.toString(clients[2].getID()));
+				clientID4.setText(Integer.toString(clients[3].getID()));
 			break;
 		case 5:
 				clientList1.setText(clients[0].toStringGames2());
@@ -432,6 +485,11 @@ public class MainController {
 				clientList3.setText(clients[2].toStringGames2());
 				clientList4.setText(clients[3].toStringGames2());
 				clientList5.setText(clients[4].toStringGames2());
+				clientID1.setText(Integer.toString(clients[0].getID()));
+				clientID2.setText(Integer.toString(clients[1].getID()));
+				clientID3.setText(Integer.toString(clients[2].getID()));
+				clientID4.setText(Integer.toString(clients[3].getID()));
+				clientID5.setText(Integer.toString(clients[4].getID()));
 			break;		
 		default:
     	}
@@ -707,6 +765,21 @@ public class MainController {
 	//-------------------------------------------------------------------------------------------------------------
 	
 	//--------------------------------------ExitOrderScreen.fxml---------------------------------------------------
+	
+    @FXML
+    private Label total1;
+    
+    @FXML
+    private Label total2;
+    
+    @FXML
+    private Label total3;
+    
+    @FXML
+    private Label total4;
+    
+    @FXML
+    private Label total5;
 	@FXML
 	public void exitOrderScreen(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ExitOrderScreen.fxml"));
@@ -737,6 +810,8 @@ public class MainController {
     				clientList4.setVisible(false);
     				client5.setVisible(false);
     				clientList5.setVisible(false);
+    				clientID1.setText(Integer.toString(clients[0].getID()));
+    				total1.setText("$"+clients[0].getToPay());
     			break;
     		case 2:
     				clientList1.setText(clients[0].toStringGames());
@@ -747,6 +822,10 @@ public class MainController {
     				clientList4.setVisible(false);
     				client5.setVisible(false);
     				clientList5.setVisible(false);
+    				clientID1.setText(Integer.toString(clients[0].getID()));
+    				clientID2.setText(Integer.toString(clients[1].getID()));
+    				total1.setText("$"+clients[0].getToPay());
+    				total2.setText("$"+clients[1].getToPay());
     			break;
     		case 3:
     				clientList1.setText(clients[0].toStringGames());
@@ -756,6 +835,12 @@ public class MainController {
     				clientList4.setVisible(false);
     				client5.setVisible(false);
     				clientList5.setVisible(false);
+    				clientID1.setText(Integer.toString(clients[0].getID()));
+    				clientID2.setText(Integer.toString(clients[1].getID()));
+    				clientID3.setText(Integer.toString(clients[2].getID()));
+    				total1.setText("$"+clients[0].getToPay());
+    				total2.setText("$"+clients[1].getToPay());
+    				total3.setText("$"+clients[2].getToPay());
     			break;
     		case 4:
     				clientList1.setText(clients[0].toStringGames());
@@ -764,6 +849,14 @@ public class MainController {
     				clientList4.setText(clients[3].toStringGames());
     				client5.setVisible(false);
     				clientList5.setVisible(false);
+    				clientID1.setText(Integer.toString(clients[0].getID()));
+    				clientID2.setText(Integer.toString(clients[1].getID()));
+    				clientID3.setText(Integer.toString(clients[2].getID()));
+    				clientID4.setText(Integer.toString(clients[3].getID()));
+    				total1.setText("$"+clients[0].getToPay());
+    				total2.setText("$"+clients[1].getToPay());
+    				total3.setText("$"+clients[2].getToPay());
+    				total4.setText("$"+clients[3].getToPay());
     			break;
     		case 5:
     				clientList1.setText(clients[0].toStringGames());
@@ -771,6 +864,16 @@ public class MainController {
     				clientList3.setText(clients[2].toStringGames());
     				clientList4.setText(clients[3].toStringGames());
     				clientList5.setText(clients[4].toStringGames());
+    				clientID1.setText(Integer.toString(clients[0].getID()));
+    				clientID2.setText(Integer.toString(clients[1].getID()));
+    				clientID3.setText(Integer.toString(clients[2].getID()));
+    				clientID4.setText(Integer.toString(clients[3].getID()));
+    				clientID5.setText(Integer.toString(clients[4].getID()));
+    				total1.setText("$"+clients[0].getToPay());
+    				total2.setText("$"+clients[1].getToPay());
+    				total3.setText("$"+clients[2].getToPay());
+    				total4.setText("$"+clients[3].getToPay());
+    				total5.setText("$"+clients[4].getToPay());
     			break;		
     		default:
     		}
@@ -788,6 +891,8 @@ public class MainController {
     				clientList4.setVisible(false);
     				client5.setVisible(false);
     				clientList5.setVisible(false);
+    				clientID1.setText(Integer.toString(clients[0].getID()));
+    				total1.setText("$"+clients[0].getToPay());
     			break;
     		case 2:
     				clientList1.setText(clients[0].toStringGames());
@@ -798,6 +903,10 @@ public class MainController {
     				clientList4.setVisible(false);
     				client5.setVisible(false);
     				clientList5.setVisible(false);
+    				clientID1.setText(Integer.toString(clients[0].getID()));
+    				clientID2.setText(Integer.toString(clients[1].getID()));
+    				total1.setText("$"+clients[0].getToPay());
+    				total2.setText("$"+clients[1].getToPay());
     			break;
     		case 3:
     				clientList1.setText(clients[0].toStringGames());
@@ -807,6 +916,12 @@ public class MainController {
     				clientList4.setVisible(false);
     				client5.setVisible(false);
     				clientList5.setVisible(false);
+    				clientID1.setText(Integer.toString(clients[0].getID()));
+    				clientID2.setText(Integer.toString(clients[1].getID()));
+    				clientID3.setText(Integer.toString(clients[2].getID()));
+    				total1.setText("$"+clients[0].getToPay());
+    				total2.setText("$"+clients[1].getToPay());
+    				total3.setText("$"+clients[2].getToPay());
     			break;
     		case 4:
     				clientList1.setText(clients[0].toStringGames());
@@ -815,6 +930,14 @@ public class MainController {
     				clientList4.setText(clients[3].toStringGames());
     				client5.setVisible(false);
     				clientList5.setVisible(false);
+    				clientID1.setText(Integer.toString(clients[0].getID()));
+    				clientID2.setText(Integer.toString(clients[1].getID()));
+    				clientID3.setText(Integer.toString(clients[2].getID()));
+    				clientID4.setText(Integer.toString(clients[3].getID()));
+    				total1.setText("$"+clients[0].getToPay());
+    				total2.setText("$"+clients[1].getToPay());
+    				total3.setText("$"+clients[2].getToPay());
+    				total4.setText("$"+clients[3].getToPay());
     			break;
     		case 5:
     				clientList1.setText(clients[0].toStringGames());
@@ -822,6 +945,16 @@ public class MainController {
     				clientList3.setText(clients[2].toStringGames());
     				clientList4.setText(clients[3].toStringGames());
     				clientList5.setText(clients[4].toStringGames());
+    				clientID1.setText(Integer.toString(clients[0].getID()));
+    				clientID2.setText(Integer.toString(clients[1].getID()));
+    				clientID3.setText(Integer.toString(clients[2].getID()));
+    				clientID4.setText(Integer.toString(clients[3].getID()));
+    				clientID5.setText(Integer.toString(clients[4].getID()));
+    				total1.setText("$"+clients[0].getToPay());
+    				total2.setText("$"+clients[1].getToPay());
+    				total3.setText("$"+clients[2].getToPay());
+    				total4.setText("$"+clients[3].getToPay());
+    				total5.setText("$"+clients[4].getToPay());
     			break;		
     		default:
     		}
@@ -839,6 +972,8 @@ public class MainController {
     				clientList4.setVisible(false);
     				client5.setVisible(false);
     				clientList5.setVisible(false);
+    				clientID1.setText(Integer.toString(clients[0].getID()));
+    				total1.setText("$"+clients[0].getToPay());
     			break;
     		case 2:
     				clientList1.setText(clients[0].toStringGames());
@@ -849,6 +984,10 @@ public class MainController {
     				clientList4.setVisible(false);
     				client5.setVisible(false);
     				clientList5.setVisible(false);
+    				clientID1.setText(Integer.toString(clients[0].getID()));
+    				clientID2.setText(Integer.toString(clients[1].getID()));
+    				total1.setText("$"+clients[0].getToPay());
+    				total2.setText("$"+clients[1].getToPay());
     			break;
     		case 3:
     				clientList1.setText(clients[0].toStringGames());
@@ -858,6 +997,12 @@ public class MainController {
     				clientList4.setVisible(false);
     				client5.setVisible(false);
     				clientList5.setVisible(false);
+    				clientID1.setText(Integer.toString(clients[0].getID()));
+    				clientID2.setText(Integer.toString(clients[1].getID()));
+    				clientID3.setText(Integer.toString(clients[2].getID()));
+    				total1.setText("$"+clients[0].getToPay());
+    				total2.setText("$"+clients[1].getToPay());
+    				total3.setText("$"+clients[2].getToPay());
     			break;
     		case 4:
     				clientList1.setText(clients[0].toStringGames());
@@ -866,6 +1011,14 @@ public class MainController {
     				clientList4.setText(clients[3].toStringGames());
     				client5.setVisible(false);
     				clientList5.setVisible(false);
+    				clientID1.setText(Integer.toString(clients[0].getID()));
+    				clientID2.setText(Integer.toString(clients[1].getID()));
+    				clientID3.setText(Integer.toString(clients[2].getID()));
+    				clientID4.setText(Integer.toString(clients[3].getID()));
+    				total1.setText("$"+clients[0].getToPay());
+    				total2.setText("$"+clients[1].getToPay());
+    				total3.setText("$"+clients[2].getToPay());
+    				total4.setText("$"+clients[3].getToPay());
     			break;
     		case 5:
     				clientList1.setText(clients[0].toStringGames());
@@ -873,6 +1026,16 @@ public class MainController {
     				clientList3.setText(clients[2].toStringGames());
     				clientList4.setText(clients[3].toStringGames());
     				clientList5.setText(clients[4].toStringGames());
+    				clientID1.setText(Integer.toString(clients[0].getID()));
+    				clientID2.setText(Integer.toString(clients[1].getID()));
+    				clientID3.setText(Integer.toString(clients[2].getID()));
+    				clientID4.setText(Integer.toString(clients[3].getID()));
+    				clientID5.setText(Integer.toString(clients[4].getID()));
+    				total1.setText("$"+clients[0].getToPay());
+    				total2.setText("$"+clients[1].getToPay());
+    				total3.setText("$"+clients[2].getToPay());
+    				total4.setText("$"+clients[3].getToPay());
+    				total5.setText("$"+clients[4].getToPay());
     			break;		
     		default:
     		}
