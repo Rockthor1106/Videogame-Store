@@ -14,7 +14,7 @@ public class VideoGameStore {
 	private ArrayList<Rack> racks;
 	
 	public VideoGameStore() {
-		
+		racks = new ArrayList<>();
 	}
 	
 	public void setCashiers(int cashiers) {
