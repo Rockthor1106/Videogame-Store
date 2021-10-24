@@ -154,7 +154,10 @@ public class MainController {
     
     @FXML
     void sortingTwo(ActionEvent event) throws IOException {
-    	
+    	clientsActions(clientsQuantity, clientsGames, 1);
+    	for(int i = 0; i<clients.length; i++) {
+    		clients[i].setGamesToBuy(videoGameStore.orderList(clients[i].getWishListCode(), false));
+    	} 
     	afterSectionTwoScreen(event);
     }
 
