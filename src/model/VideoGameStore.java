@@ -63,6 +63,10 @@ public class VideoGameStore {
 		bReader.close();
 	}
 	
+	/*<b> pre: </b> The integer called key which corresponds with the identifier of a game must be exist within the video games catalog
+	 * since we suppose that our client came to our store after of generate his wish list in the web page where only 
+	 * was displayed video games that existed within the catalog <br>
+	 * */
 	public VideoGame getVideoGame(int key) {
 		boolean founded = false;
 		VideoGame game = null;
