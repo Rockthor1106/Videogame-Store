@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="627.0" prefWidth="1044.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <TextArea fx:id="output" editable="false" prefHeight="368.0" prefWidth="520.0" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="15.0" />
+         </font></TextArea>
+   </center>
+   <left>
+      <Pane prefHeight="328.0" prefWidth="262.0" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <Pane prefHeight="328.0" prefWidth="262.0" BorderPane.alignment="CENTER" />
+   </right>
+   <bottom>
+      <Pane prefHeight="99.0" prefWidth="1044.0" BorderPane.alignment="CENTER" />
+   </bottom>
+   <top>
+      <BorderPane prefHeight="103.0" prefWidth="1044.0" BorderPane.alignment="CENTER">
+         <center>
+            <Label text="Exit Order" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+         </center>
+      </BorderPane>
+   </top>
+</BorderPane>

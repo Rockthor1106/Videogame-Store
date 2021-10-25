@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -148,8 +147,14 @@ public class MainController {
     	clientsActions(clientsQuantity, clientsGames, 1);
     	for(int i = 0; i<clients.length; i++) {
     		clients[i].setGamesToBuy(videoGameStore.orderList(clients[i].getWishListCode(), true));
-    	}  	
-    	afterSectionTwoScreen(event);
+    	}  
+    	
+    	if (cashiersQuantity > 3 || clientsQuantity > 5) {
+			outputScreen(event);
+		}
+    	else {
+    		afterSectionTwoScreen(event);
+		}
     }
     
     @FXML
@@ -158,7 +163,12 @@ public class MainController {
     	for(int i = 0; i<clients.length; i++) {
     		clients[i].setGamesToBuy(videoGameStore.orderList(clients[i].getWishListCode(), false));
     	} 
-    	afterSectionTwoScreen(event);
+    	if (cashiersQuantity > 3 || clientsQuantity > 5) {
+			outputScreen(event);
+		}
+    	else {
+    		afterSectionTwoScreen(event);
+		}
     }
 
 
@@ -1047,5 +1057,25 @@ public class MainController {
 //			}
     	}
 	}
+	//-------------------------------------------------------------------------------------------------------------
+	
+	//-----------------------------------------------OutputScreen.fxml---------------------------------------------
+    @FXML
+    private TextArea output;
+    
+	@FXML
+	void outputScreen(ActionEvent event) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("OutputScreen.fxml"));
+		fxmlLoader.setController(this);    	
+		Parent outputscreen = fxmlLoader.load();
+		mainPane.getChildren().clear();
+    	mainPane.setTop(outputscreen);
+    	String str = "";
+    	for (int i = 0; i < clients.length; i++) {
+    		str += clients[i].toString() + "\n";
+    	}
+    	output.setText(str);
+	}
+
 	//-------------------------------------------------------------------------------------------------------------
 }
